@@ -1,0 +1,47 @@
+/* ══════════════════════════════════
+   DESIGN TOKENS & RESET
+   ══════════════════════════════════ */
+
+:root {
+  /* Dieter Rams palette: white ground, black type, one grey */
+  --ink:    #ffffff;
+  --ash:    #f4f4f4;
+  --coal:   #e8e8e8;
+  --ember:  #d0d0d0;
+  --forge:  #000000;
+  --molten: #222222;
+  --spark:  #666666;
+  --iron:   rgba(0, 0, 0, 0.08);
+  --soot:   rgba(255, 255, 255, 0.85);
+  --fg:     #000000;
+  --dim:    rgba(0, 0, 0, 0.45);
+  --rule:   rgba(0, 0, 0, 0.10);
+
+  /* Typography */
+  --ff-display: 'Instrument Sans', sans-serif;
+  --ff-body:    'Instrument Sans', sans-serif;
+  --ff-mono:    'DM Mono', monospace;
+  --ff-serif:   'Instrument Serif', serif;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--forge);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  cursor: auto;
+  overflow-x: hidden;
+}

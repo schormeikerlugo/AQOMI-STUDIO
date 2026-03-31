@@ -1,0 +1,17 @@
+{
+  "name": "aqomi-studio",
+  "version": "1.0.0",
+  "description": "AQOMI Studios — Elite Branding & Design Agency",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["branding", "design", "agency"],
+  "author": "AQOMI Studios",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^8.0.3"
+  }
+}

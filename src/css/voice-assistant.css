@@ -1,0 +1,131 @@
+/* ══════════════════════════════════
+   VOICE ASSISTANT
+   ══════════════════════════════════ */
+
+#va-wrap {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+#va-btn {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+#va-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+}
+
+#va-btn.va-on {
+  background: #c0392b;
+}
+
+.va-ring {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(192, 57, 43, 0.25);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#va-btn.va-on .va-ring:nth-child(1) {
+  animation: vaPulse 1.4s ease-out infinite;
+}
+
+#va-btn.va-on .va-ring:nth-child(2) {
+  animation: vaPulse 1.4s 0.5s ease-out infinite;
+}
+
+@keyframes vaPulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+#va-mic-icon,
+#va-stop-icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+#va-stop-icon {
+  display: none;
+}
+
+#va-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 16px;
+  padding: 16px 20px;
+  width: 290px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.11);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+#va-card.va-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+#va-lbl {
+  font-family: var(--ff-mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.32);
+  margin-bottom: 8px;
+}
+
+#va-msg {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #000;
+  font-weight: 300;
+  min-height: 18px;
+}
+
+#va-dots {
+  display: none;
+  gap: 4px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+#va-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.2;
+  animation: vaDot 1.1s ease-in-out infinite;
+}
+
+#va-dots span:nth-child(2) { animation-delay: 0.2s; }
+#va-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes vaDot {
+  0%, 80%, 100% { opacity: 0.15; transform: scale(0.8); }
+  40% { opacity: 0.6; transform: scale(1); }
+}

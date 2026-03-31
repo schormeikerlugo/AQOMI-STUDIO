@@ -1,0 +1,42 @@
+/* ══════════════════════════════════
+   CUSTOM CURSOR
+   ══════════════════════════════════ */
+
+#cur {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--forge);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s, background 0.2s;
+  mix-blend-mode: difference;
+}
+
+#cur-r {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+body:has(a:hover) #cur,
+body:has(button:hover) #cur {
+  width: 20px;
+  height: 20px;
+  background: var(--molten);
+}
+
+body:has(a:hover) #cur-r,
+body:has(button:hover) #cur-r {
+  width: 56px;
+  height: 56px;
+  border-color: var(--forge);
+}

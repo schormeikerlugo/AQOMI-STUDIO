@@ -1,0 +1,48 @@
+/* ══════════════════════════════════
+   ANIMATIONS & REVEALS
+   ══════════════════════════════════ */
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-l {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+.reveal-l.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays */
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+/* Shared keyframes */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes metalMove {
+  from { background-position: 0% center; }
+  to   { background-position: 100% center; }
+}
