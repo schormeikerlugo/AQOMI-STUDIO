@@ -18,7 +18,9 @@ export function showPage(id) {
     const pg = document.getElementById('page-' + id);
     if (pg) {
       pg.classList.add('active');
-      window.scrollTo({ top: 0 });
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }
 
     updateNav(id);
@@ -84,5 +86,27 @@ export function initNavScroll() {
 export function initLinkPrevention() {
   document.querySelectorAll('a[href="#"]').forEach((a) => {
     a.addEventListener('click', (e) => e.preventDefault());
+  });
+}
+
+/**
+ * Mobile nav toggle
+ */
+export function initMobileNav() {
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (!toggle || !links) return;
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+
+  // Close menu when a nav link is clicked
+  links.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
   });
 }

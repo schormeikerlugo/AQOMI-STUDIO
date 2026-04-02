@@ -14,10 +14,12 @@ import '../css/flowchart.css';
 import '../css/jobs.css';
 import '../css/voice-assistant.css';
 import '../css/animations.css';
+import '../css/responsive.css';
 
 // ── JS Module Imports ────────────────────────────
+import { loadAllPages } from './pageLoader.js';
 import { initCursor } from './cursor.js';
-import { showPage, initNavScroll, initLinkPrevention } from './router.js';
+import { showPage, initNavScroll, initLinkPrevention, initMobileNav } from './router.js';
 import { initReveals, triggerReveals } from './reveals.js';
 import { initEmbers } from './embers.js';
 import { initCarousel } from './carousel.js';
@@ -33,7 +35,9 @@ import { initVoiceAssistant } from './voiceAssistant.js';
 window.showPage = showPage;
 
 // ── Initialize everything on DOM ready ───────────
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load all HTML partials before initializing
+  await loadAllPages();
   // Fade in body
   document.body.style.opacity = '0';
   document.body.style.transition = 'opacity .6s';
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initNavScroll();
   initLinkPrevention();
+  initMobileNav();
   initReveals();
   initEmbers();
 

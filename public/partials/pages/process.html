@@ -1,0 +1,464 @@
+<div id="page-process" class="page" style="position:relative;">
+
+  <!-- Minimal dot-grid background canvas -->
+  <canvas id="proc-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;"></canvas>
+
+  <!-- All content sits above canvas -->
+  <div style="position:relative;z-index:1;">
+
+  <section id="section-flowchart" style="padding:80px 80px 0;background:#ffffff;">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:64px;gap:40px;flex-wrap:wrap;">
+      <div>
+        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:rgba(0,0,0,0.35);display:block;margin-bottom:16px;">Proprietary Method</span>
+        <h2 style="font-family:var(--ff-display);font-size:clamp(32px,4vw,52px);font-weight:900;line-height:.92;letter-spacing:-.02em;margin:0;">How we build<br>a brand that <em style="font-family:var(--ff-serif);font-style:italic;font-weight:400;">sticks.</em></h2>
+      </div>
+      <p style="font-size:13px;line-height:1.85;color:rgba(0,0,0,0.42);font-weight:300;max-width:320px;margin:0;">One question governs every phase: is this the bravest decision we can make? If not, we go back.</p>
+    </div>
+
+    <!-- FLOWCHART --- animated HTML/CSS/JS rebuild -->
+    
+
+    <div id="fc-wrap">
+    <div id="fc-stage">
+
+      <!-- SVG connector layer (behind nodes) -->
+      <svg id="fc-connectors" viewBox="0 0 1100 450">
+        <defs>
+          <marker id="fca" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0.5 L0,7.5 L7.5,4z" fill="#000"/>
+          </marker>
+          <marker id="fca-dim" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0.5 L0,7.5 L7.5,4z" fill="rgba(0,0,0,0.25)"/>
+          </marker>
+        </defs>
+        <!-- 01---02 -->
+        <line id="fc-c1" class="fc-line" x1="200" y1="88" x2="236" y2="88" marker-end="url(#fca)"/>
+        <!-- 02---diamond -->
+        <line id="fc-c2" class="fc-line" x1="400" y1="88" x2="436" y2="88" marker-end="url(#fca)"/>
+        <!-- diamond YES---03 -->
+        <line id="fc-c3" class="fc-line" x1="600" y1="88" x2="636" y2="88" stroke-width="2" marker-end="url(#fca)"/>
+        <!-- 03---04 down -->
+        <line id="fc-c4" class="fc-line" x1="720" y1="136" x2="720" y2="276" marker-end="url(#fca)"/>
+        <!-- 04---05 -->
+        <line id="fc-c5" class="fc-line" x1="638" y1="328" x2="602" y2="328" marker-end="url(#fca)"/>
+        <!-- 05---06 -->
+        <line id="fc-c6" class="fc-line" x1="438" y1="328" x2="402" y2="328" marker-end="url(#fca)"/>
+        <!-- diamond NO---iterate -->
+        <line id="fc-c7" class="fc-line-dashed" x1="520" y1="136" x2="520" y2="180" marker-end="url(#fca-dim)"/>
+        <!-- iterate---back to 02 -->
+        <path id="fc-c8" class="fc-line-dashed" d="M440,216 Q340,216 340,88 L400,88" marker-end="url(#fca-dim)" style="stroke-dasharray:400;stroke-dashoffset:400"/>
+        <!-- callout---diamond -->
+        <line id="fc-c9" class="fc-line-dim" x1="880" y1="88" x2="602" y2="88" style="stroke-dasharray:4 4;"/>
+
+        <!-- YES / NO labels (always visible but subtle) -->
+        <text x="614" y="80" text-anchor="middle" font-size="8.5" fill="rgba(0,0,0,0)" font-weight="700" letter-spacing="1.5" id="fc-yes-lbl" style="transition:fill .4s .8s">YES</text>
+        <text x="528" y="162" font-size="8.5" fill="rgba(0,0,0,0)" letter-spacing="1" id="fc-no-lbl" style="transition:fill .4s 1.2s">NO --- ITERATE</text>
+        <text x="338" y="155" font-size="8" fill="rgba(0,0,0,0)" text-anchor="middle" letter-spacing="1" id="fc-back-lbl" style="transition:fill .4s 1.4s">BACK</text>
+      </svg>
+
+      <!-- NODES -->
+      <!-- 01 Discovery -->
+      <div class="fc-node" id="fcn1" style="left:40px;top:40px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>01 · DISCOVERY</span><span style="opacity:.6">3---5d</span></div>
+        <div class="fc-node-title">Discovery</div>
+        <div class="fc-node-sub">Brief · Audit · Gap</div>
+      </div>
+
+      <!-- 02 Positioning -->
+      <div class="fc-node" id="fcn2" style="left:240px;top:40px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>02 · STRATEGY</span><span style="opacity:.6">5---7d</span></div>
+        <div class="fc-node-title">Positioning</div>
+        <div class="fc-node-sub">Story · Voice · Place</div>
+      </div>
+
+      <!-- Diamond: BRAVE ENOUGH? --- positioned so centre = 520,88 -->
+      <div class="fc-diamond" id="fc-dia" style="left:472px;top:40px;">
+        <div class="fc-diamond-text">
+          <span>BRAVE</span>
+          <span>ENOUGH?</span>
+        </div>
+      </div>
+
+      <!-- 03 Identity (inverted) -->
+      <div class="fc-node fc-node-inv" id="fcn3" style="left:640px;top:40px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>03 · CREATION</span><span style="opacity:.5">10---21d</span></div>
+        <div class="fc-node-title">Identity</div>
+        <div class="fc-node-sub">Logo · Type · Color</div>
+      </div>
+
+      <!-- ITERATE -->
+      <div class="fc-iterate" id="fc-iter" style="left:440px;top:184px;">
+        <div class="fc-iterate-title">ITERATE</div>
+        <div class="fc-iterate-sub">Challenge the brief</div>
+      </div>
+
+      <!-- 04 Build -->
+      <div class="fc-node" id="fcn4" style="left:640px;top:280px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>04 · PRODUCTION</span></div>
+        <div class="fc-node-title">Build</div>
+        <div class="fc-node-sub">Web · Assets · DreamLab</div>
+      </div>
+
+      <!-- 05 Guidelines -->
+      <div class="fc-node" id="fcn5" style="left:440px;top:280px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>05 · GUIDELINES</span></div>
+        <div class="fc-node-title">Codify</div>
+        <div class="fc-node-sub">Bible · Files · Rules</div>
+      </div>
+
+      <!-- 06 Deploy (inverted) -->
+      <div class="fc-node fc-node-inv" id="fcn6" style="left:240px;top:280px;">
+        <div class="fc-node-bar"></div>
+        <div class="fc-node-label"><span>06 · LAUNCH</span></div>
+        <div class="fc-node-title">Deploy</div>
+        <div class="fc-node-sub">Kit · Reveal · Live</div>
+      </div>
+
+      <!-- Callout --- glass, padding-based layout -->
+      <div class="fc-callout" id="fc-call" style="left:880px;top:40px;">
+        <div class="fc-callout-bar"></div>
+        <span class="fc-callout-head">The Difference</span>
+        <div class="fc-callout-rule"></div>
+        <div class="fc-callout-body"><p>Most studios skip<br>the courage check.</p></div>
+        <div class="fc-callout-rule"></div>
+        <div class="fc-callout-strong"><p>We stop. We ask.<br>We go back<br>if it's not bold.</p></div>
+      </div>
+
+      <!-- Phase labels -->
+      <div class="fc-phase-rule" style="left:40px;right:262px;"></div>
+      <div class="fc-phase-label" style="left:160px;">Understand</div>
+      <div class="fc-phase-label" style="left:356px;">Deploy</div>
+      <div class="fc-phase-label" style="left:560px;">Create + Produce</div>
+
+    </div><!-- /stage -->
+    </div><!-- /wrap -->
+
+    
+
+  </section>
+
+  <!-- Studio CTA -->
+  <section style="background:#ffffff;padding:180px 80px 0;text-align:center;">
+    <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:rgba(0,0,0,0.3);display:block;margin-bottom:16px;">The Studio</span>
+    <h2 style="font-family:var(--ff-display);font-size:clamp(32px,3.5vw,52px);font-weight:900;line-height:.95;letter-spacing:-.025em;margin:0 0 20px;">Built with purpose.<br><em style="font-family:var(--ff-serif);font-weight:400;color:rgba(0,0,0,0.4);">Driven by a mission.</em></h2>
+    <p style="font-size:13px;line-height:1.8;color:var(--dim);font-weight:300;max-width:420px;margin:0 auto 36px;">We exist to close the gap between great brands and the world that needs to see them. Learn what drives us.</p>
+    <a href="#" onclick="showPage('studio')" class="btn-pill" style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#fff;background:#000;padding:16px 32px;border-radius:100px;text-decoration:none;display:inline-block;" onmouseenter="this.style.background='var(--forge)'" onmouseleave="this.style.background='#000'">Our Mission &nbsp;&#8594;</a>
+  </section>
+
+  <!-- Hero -->
+  <div class="page-hero" style="background:transparent;border-bottom:none;">
+    <span class="page-eyebrow">How We Work</span>
+    <h1 class="page-title" style="color:var(--fg);">Six phases.<br><em>Zero guesswork.</em></h1>
+    <p class="page-body">We don't just follow a process --- we interrogate it. At every phase, we ask whether the safe choice is the right choice. Often it isn't.</p>
+  </div>
+
+  <section style="padding:32px 64px 80px;position:relative;">
+
+    
+
+    <div id="rm-grid">
+      <svg id="rm-svg"><path id="rm-path" class="rm-path" d=""/></svg>
+
+      <!-- 01 Discovery -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#c8965a;">
+          <div class="rm-ghost">01</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#c8965a;"></span>Discovery</div>
+          <div class="rm-title">Intake &amp; Brand Audit</div>
+          <p class="rm-body">We begin by understanding where you are. A structured brief, competitor landscape review, and brand audit. We identify the perception gap &mdash; the distance between how you&rsquo;re currently seen and how you should be seen.</p>
+          <div class="rm-pills"><span class="rm-pill">Discovery Report</span><span class="rm-pill">3&ndash;5 Days</span></div>
+        </div>
+      </div>
+
+      <!-- 02 Strategy -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#4a90d9;">
+          <div class="rm-ghost">02</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#4a90d9;"></span>Strategy</div>
+          <div class="rm-title">Brand Strategy &amp; Positioning</div>
+          <p class="rm-body">We define your brand&rsquo;s core: positioning in the market, target perception, verbal identity (name, tagline, tone of voice), and strategic objectives. No creative direction begins until the strategy is locked and approved.</p>
+          <div class="rm-pills"><span class="rm-pill">Strategy Deck</span><span class="rm-pill">5&ndash;7 Days</span></div>
+        </div>
+      </div>
+
+      <!-- 03 Creation -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#52b788;">
+          <div class="rm-ghost">03</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#52b788;"></span>Creation</div>
+          <div class="rm-title">Visual Identity Design</div>
+          <p class="rm-body">Logo system, color palette, typography, iconography, photography direction, and all core brand assets. We present two distinct creative directions &mdash; one expected, one that challenges. Every design decision is rooted in the strategy.</p>
+          <div class="rm-pills"><span class="rm-pill">Full Identity System</span><span class="rm-pill">10&ndash;21 Days</span><span class="rm-pill rm-pill-accent">Risk/Reward Decision Point</span></div>
+        </div>
+      </div>
+
+      <!-- 04 Production -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#d4845a;">
+          <div class="rm-ghost">04</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#d4845a;"></span>Production</div>
+          <div class="rm-title">Asset Production &amp; Application</div>
+          <p class="rm-body">Every touchpoint &mdash; business cards, letterhead, social templates, presentation decks, packaging, signage, digital ads, web assets. For Full Build clients: website design &amp; development, photography direction, and DreamLab elements.</p>
+          <div class="rm-pills"><span class="rm-pill">Complete Asset Suite</span><span class="rm-pill">Varies by scope</span></div>
+        </div>
+      </div>
+
+      <!-- 05 Guidelines -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#9b72cf;">
+          <div class="rm-ghost">05</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#9b72cf;"></span>Guidelines</div>
+          <div class="rm-title">Brand Guidelines Document</div>
+          <p class="rm-body">A comprehensive brand guidelines document &mdash; digital and print-ready &mdash; that ensures every future use of the brand is consistent. Built to last for years, not months. Every rule is explained, not just shown.</p>
+          <div class="rm-pills"><span class="rm-pill">Brand Guidelines PDF</span><span class="rm-pill">Master Source Files</span></div>
+        </div>
+      </div>
+
+      <!-- 06 Launch -->
+      <div class="rm-step">
+        <div class="rm-card" style="border-top-color:#000;">
+          <div class="rm-ghost">06</div>
+          <div class="rm-label"><span class="rm-dot" style="background:#000;"></span>Launch</div>
+          <div class="rm-title">Brand Launch &amp; Handoff</div>
+          <p class="rm-body">Coordinated brand reveal strategy, launch asset kit (social announcements, press release template, email campaign), and full file handoff in all required formats. Project clients receive a 30-day post-launch support window.</p>
+          <div class="rm-pills"><span class="rm-pill">Launch Kit</span><span class="rm-pill">Complete File Handoff</span><span class="rm-pill">30-Day Support</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    
+
+  </section>
+
+  <!-- PROCESS PHILOSOPHY -->
+  <section style="background:#ffffff;padding:100px 80px;text-align:center;">
+    <div style="max-width:760px;margin:0 auto;">
+      <div style="font-family:var(--ff-display);font-size:80px;font-weight:900;line-height:.7;color:rgba(0,0,0,0.07);margin-bottom:24px;user-select:none;">&ldquo;</div>
+      <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:24px;">Design for the Client</span>
+      <h2 style="font-family:var(--ff-display);font-size:clamp(28px,3.5vw,48px);font-weight:900;line-height:1.05;letter-spacing:-.025em;margin:0 0 28px;color:var(--fg);">We design for the stranger who has never heard of you.</h2>
+      <p style="font-size:14px;line-height:1.9;color:var(--dim);font-weight:300;margin:0 auto;max-width:580px;">Most agencies design to impress the client. We design to stop the scroll of someone who has never heard of your brand and has no reason to care. That discipline --- designing for indifference --- is what makes our work convert.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS PAGE CAROUSEL -->
+  <section style="padding:0;background:#ffffff;overflow:hidden;position:relative;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:48px 80px 32px 160px;">
+      <div style="display:flex;align-items:center;gap:24px;">
+        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:rgba(0,0,0,0.35);">From Brief to Brand</span>
+        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;color:rgba(0,0,0,0.18);">Our Process in Action</span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button id="pcar-prev" style="width:44px;height:44px;background:transparent;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:monospace;" onmouseenter="this.style.borderColor='#000';this.style.color='#000'" onmouseleave="this.style.borderColor='rgba(0,0,0,0.15)';this.style.color='rgba(0,0,0,0.5)'">&#8592;</button>
+        <button id="pcar-next" style="width:44px;height:44px;background:transparent;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:monospace;" onmouseenter="this.style.borderColor='#000';this.style.color='#000'" onmouseleave="this.style.borderColor='rgba(0,0,0,0.15)';this.style.color='rgba(0,0,0,0.5)'">&#8594;</button>
+      </div>
+    </div>
+
+    <div style="overflow:hidden;padding:0 0 52px 160px;position:relative;">
+      <div id="pcar-track" style="display:flex;gap:28px;will-change:transform;transition:none;">
+
+        <div class="car-card" data-idx="0" onclick="showPage('proj-aithr')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2025/11/1-uai-1080x720.png" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Aithr">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Tech</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Aithr</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Full identity system</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="1" onclick="showPage('proj-news930')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2025/11/Slide-16_9-1-uai-1080x720.png" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="News930">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Media</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">News930</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Brand refresh</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="2" onclick="showPage('proj-spirit-halloween')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Rocket-Sagiper-2-uai-867x578.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Spirit Halloween">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Retail</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Spirit Halloween</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">National campaign identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="3" onclick="showPage('proj-china-southern')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-China-Southern-Airline-4-uai-520x347.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="China Southern">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Aviation</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">China Southern</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Global airline identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="4" onclick="showPage('proj-operam')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Operam-2-uai-1012x675.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Operam">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Tech</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Operam</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Identity + strategy</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="5" onclick="showPage('proj-weexchange')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-WeExchange-2-uai-562x750.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="WeExchange">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Fintech</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">WeExchange</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Full brand identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="6" onclick="showPage('proj-three-streams')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-TSEB5-4-uai-1125x750.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Three Streams">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Hospitality</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Three Streams</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Luxury property brand</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="7" onclick="showPage('proj-dhd-surfing')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2014/12/Aqomi-DHD-2-2-uai-888x1184.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="DHD Surfing">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Sport</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">DHD Surfing</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Action sports identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="8" onclick="showPage('proj-rocket-runner')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Rocket-Runner-2-uai-1125x750.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Rocket Runner">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Gaming</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Rocket Runner</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Brand + game identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="9" onclick="showPage('proj-truckridge')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Tuck-Ridge-4-uai-1012x675.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Truckridge">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Automotive</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Truckridge</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Truck brand identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="10" onclick="showPage('proj-wodna-wieza')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Wodna-Wieza-4.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Wodna Wieza">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Architecture</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Wodna Wieza</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Landmark brand identity</span>
+          </div>
+        </div>
+
+        <div class="car-card" data-idx="11" onclick="showPage('proj-karavan-kiev')" style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Karavan-Kiev-2-uai-562x750.webp" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);" alt="Karavan Kiev">
+          <div class="car-dim" style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;"></div>
+          <div class="car-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
+            <span style="font-family:var(--ff-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px;">Branding &middot; Hospitality</span>
+            <span style="font-family:var(--ff-display);font-size:22px;font-weight:700;color:#fff;line-height:1.1;">Karavan Kiev</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;">Restaurant brand identity</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0 80px 20px 160px;">
+      <div style="flex:1;height:1px;background:rgba(0,0,0,0.08);position:relative;margin-right:32px;">
+        <div id="pcar-progress" style="position:absolute;top:0;left:0;height:1px;background:#000;width:33.3%;transition:width .9s cubic-bezier(.77,0,.18,1);"></div>
+      </div>
+      <span id="pcar-counter" style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.22em;color:rgba(0,0,0,0.3);white-space:nowrap;">01 / 12</span>
+    </div>
+
+    <div style="padding:0 80px 56px 160px;">
+      <a href="#" onclick="showPage('work')" style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:rgba(0,0,0,0.3);text-decoration:none;display:inline-flex;align-items:center;gap:12px;transition:color .2s;" onmouseenter="this.style.color='#000'" onmouseleave="this.style.color='rgba(0,0,0,0.3)'">View All Projects <span style="font-size:14px;">&#8594;</span></a>
+    </div>
+
+    
+
+  </section>
+
+  <!-- PROCESS PAGE TESTIMONIALS -->
+  <section class="testi-section">
+    <div class="testi-header">
+      <div>
+        <span class="section-tag">Client Reviews</span>
+        <h2 class="section-h2">What clients say<br><em>about the process</em></h2>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+        <div class="clutch-box">
+          <div style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);">Verified · Clutch.co</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="clutch-score">4.8</span>
+            <div><div class="clutch-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="clutch-meta">26 Reviews</div></div>
+          </div>
+        </div>
+        <div class="arrow-pair">
+          <button class="arrow-btn" onclick="ptPrev()">---</button>
+          <button class="arrow-btn" onclick="ptNext()">---</button>
+        </div>
+      </div>
+    </div>
+    <div class="t-progress-bar"><div id="pt-progress"></div></div>
+    <div class="t-wrap">
+      <div id="pt-track">
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"Aqomi felt as though they were members of our team --- people we would want on our own payroll. The authenticity and transparency delivered throughout the process were impressive."</blockquote><div class="t-byline"><div class="t-avatar">GM</div><div><div class="t-name">Gregory McKiernan</div><div class="t-role">President & CEO · Deltaform Technology · Calgary, AB</div></div><div class="t-verified">Verified</div></div></div>
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"One of the best branding agencies I've come across. I've been in digital for 8 years --- Aqomi is by far the best to work with. They go above and beyond every single time."</blockquote><div class="t-byline"><div class="t-avatar">NT</div><div><div class="t-name">Nathan Testa</div><div class="t-role">Managing Director · Teko Agency · Sydney, Australia</div></div><div class="t-verified">Verified</div></div></div>
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"They always exceed my customers' needs --- they never settle for mediocrity. It's amazing what you can accomplish when you have a team you can trust."</blockquote><div class="t-byline"><div class="t-avatar">YS</div><div><div class="t-name">Yuriy Sklyar</div><div class="t-role">CEO · ThreeFifty · San Francisco · Partner since 2009</div></div><div class="t-verified">Verified</div></div></div>
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"They think outside the box and create something unlike anything I've seen before. A project has never been late and the quality of their work is unparalleled."</blockquote><div class="t-byline"><div class="t-avatar">CM</div><div><div class="t-name">Colin Marshall</div><div class="t-role">Founder · Colin Marshall Media · Canada · Partner since 2013</div></div><div class="t-verified">Verified</div></div></div>
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"Aqomi has the creativity to make us stand out in a saturated market. Our most recent retreats sold out very quickly. The design work helped us develop a truly strong brand."</blockquote><div class="t-byline"><div class="t-avatar">---</div><div><div class="t-name">Co-founder, Yoga Studio</div><div class="t-role">Canada · Rebrand · Events sold out post-launch</div></div><div class="t-verified">Verified</div></div></div>
+        <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="t-quote">"AQOMI is to the media industry as Elon Musk is to electric cars --- a Gamechanger."</blockquote><div class="t-byline"><div class="t-avatar">IH</div><div><div class="t-name">Ian Halperin</div><div class="t-role">#1 NY Times Best-Selling Author & Award-Winning Director</div></div><div class="t-verified">Verified</div></div><div style="text-align:center;margin-top:14px;"><a href="https://clutch.co/profile/aqomi-studios" target="_blank" style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--forge);text-decoration:none;border:1px solid rgba(0,0,0,0.21);padding:7px 14px;">All 26 Reviews ---</a></div></div>
+      </div>
+    </div>
+    <div class="testi-nav">
+      <span id="pt-counter">1 / 6</span>
+      <div id="pt-dots"></div>
+    </div>
+  </section>
+
+  
+
+    <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AQOMI <em>Studios</em></div>
+        <p class="footer-tagline">Elite branding and design agency. Canada's #1 rated creative studio. 3,500+ brand identities across 40 countries.</p>
+        <div style="margin-top:24px;"><a href="#" class="btn-forge" onclick="showPage('book')" style="font-size:10px;padding:12px 24px;">Book a Call</a></div>
+      </div>
+      <div><div class="footer-col-head">Navigate</div><ul class="footer-links"><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('process')">Process</a></li><li><a href="#" onclick="showPage('studio')">Studio</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('book')">Book a Call</a></li></ul></div>
+      <div><div class="footer-col-head">Services</div><ul class="footer-links"><li><a href="#">Brand Essentials</a></li><li><a href="#">Studio Retainer</a></li><li><a href="#">Full Build</a></li><li><a href="#">DreamLab</a></li><li><a href="#">Brand Management</a></li></ul></div>
+      <div><div class="footer-col-head">Contact</div><ul class="footer-links"><li><a href="mailto:info@aqomi.com">info@aqomi.com</a></li><li><a href="mailto:press@aqomi.com">Press: press@aqomi.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="https://aqomi.com" target="_blank">aqomi.com &rarr;</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 AQOMI Studios. All rights reserved.</span><span>Clutch #1 Canada &middot; #8 North America &middot; <a href="#" onclick="showPage('careers')">Careers</a> &middot; <a href="#">View Reviews</a></span></div>
+  </footer>
+
+  </div><!-- /z-index wrapper -->
+
+  <!-- Dot grid canvas script --- runs only when process page is active -->
+  
+</div>
