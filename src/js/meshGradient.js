@@ -157,13 +157,19 @@ function initShader(canvasId, colorConfig) {
 }
 
 export function initMeshGradients() {
+  const lightConfig = {
+    base:   '0.92, 0.92, 0.92',
+    mix:    '0.85, 0.85, 0.88',
+    accent: '0.78, 0.78, 0.82',
+  };
+
   const darkConfig = {
     base:   '0.08, 0.08, 0.08',
     mix:    '0.25, 0.25, 0.25',
     accent: '0.15, 0.15, 0.15',
   };
 
-  initShader('mesh-canvas', darkConfig);
+  initShader('mesh-canvas', lightConfig);
   initShader('svc-mesh-canvas', darkConfig);
   initShader('ind-mesh-canvas', darkConfig);
   initShader('stu-mesh-canvas', darkConfig);
