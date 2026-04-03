@@ -6,7 +6,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 70vh;
-  border-top: 1px solid var(--rule);
 }
 
 .mission-left {

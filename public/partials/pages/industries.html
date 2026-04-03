@@ -2,7 +2,7 @@
 
   
 
-  <!-- Ã-"---Ã-"--- HERO Ã-"---Ã-"--- -->
+  <!-- ï¿½-"---ï¿½-"--- HERO ï¿½-"---ï¿½-"--- -->
   <div style="position:relative;overflow:hidden;">
     <canvas id="ind-mesh-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;"></canvas>
     <div class="page-hero" style="position:relative;z-index:1;padding-bottom:72px;background:transparent;border-bottom:none;">
@@ -58,24 +58,42 @@
     </div>
   </section>
 
-  <!-- Ã-"---Ã-"--- RADAR CHART (dark) Ã-"---Ã-"--- -->
+  <!-- RADAR CHART (dark) -->
+  <style>
+    @keyframes radarPulse {
+      0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 2px #c8f026); }
+      50% { opacity: 1; filter: drop-shadow(0 0 8px #c8f026); }
+    }
+    @keyframes radarDraw {
+      0% { stroke-dashoffset: 2000; }
+      100% { stroke-dashoffset: 0; }
+    }
+    #ind-radar-poly.animated {
+      animation: radarPulse 3s ease-in-out infinite;
+      stroke-dasharray: 2000;
+      animation: radarDraw 2s ease-out forwards, radarPulse 3s ease-in-out 2s infinite;
+    }
+    .ind-radar-dot.animated {
+      animation: radarPulse 2.5s ease-in-out infinite;
+    }
+  </style>
   <section style="background:#0d0d0d;padding:80px;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1160px;margin:0 auto;">
 
       <div>
-        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--forge);display:block;margin-bottom:20px;">Sector Coverage</span>
+        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:#c8f026;display:block;margin-bottom:20px;">Sector Coverage</span>
         <h2 style="font-family:var(--ff-display);font-size:clamp(36px,4vw,56px);font-weight:900;line-height:.9;letter-spacing:-.025em;color:#fff;margin:0 0 28px;">We've worked<br>every angle.</h2>
         <p style="font-size:14px;line-height:1.85;color:rgba(255,255,255,0.4);font-weight:300;margin:0 0 48px;max-width:400px;">Scores reflect portfolio depth, client calibre, and repeat engagement across each sector over 18 years.</p>
 
         <div style="display:flex;flex-direction:column;gap:14px;" id="ind-score-list">
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Sports &amp; Fitness</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">92%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="92%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Fortune 500 &amp; Corporate</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">90%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="90%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Food &amp; Hospitality</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">88%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="88%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Entertainment &amp; Media</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">82%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="82%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Automotive &amp; Industrial</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">80%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="80%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Architecture &amp; Construction</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">78%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="78%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Healthcare &amp; Medical</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">75%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="75%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Aviation &amp; Logistics</span><span style="font-family:var(--ff-mono);font-size:9px;color:var(--forge);">72%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="72%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Sports &amp; Fitness</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">92%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="92%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Fortune 500 &amp; Corporate</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">90%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="90%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Food &amp; Hospitality</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">88%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="88%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Entertainment &amp; Media</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">82%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="82%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Automotive &amp; Industrial</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">80%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="80%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Architecture &amp; Construction</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">78%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="78%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Healthcare &amp; Medical</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">75%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="75%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Aviation &amp; Logistics</span><span style="font-family:var(--ff-mono);font-size:9px;color:#c8f026;">72%</span></div><div style="height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div class="ind-sbar" data-w="72%" style="height:100%;width:0;background:#c8f026;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);"></div></div></div>
         </div>
       </div>
 
@@ -128,7 +146,7 @@
 
   
 
-  <!-- Ã-"---Ã-"--- INDUSTRY CARDS Ã-"---Ã-"--- -->
+  <!-- ï¿½-"---ï¿½-"--- INDUSTRY CARDS ï¿½-"---ï¿½-"--- -->
   <!-- CTA banner -->
   <section style="background:#0d0d0d;padding:80px;text-align:center;">
     <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:16px;">Services &amp; Pricing</span>
@@ -210,7 +228,7 @@
     </div>
   </section>
 
-  <!-- Ã-"---Ã-"--- IMPACT BARS Ã-"---Ã-"--- -->
+  <!-- ï¿½-"---ï¿½-"--- IMPACT BARS ï¿½-"---ï¿½-"--- -->
   <section style="padding:80px 80px 0;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1160px;margin:0 auto;">
       <div>
@@ -239,16 +257,41 @@
     </div>
   </section>
 
-    <footer>
+  <script>
+  (function(){
+    // Animate radar chart, score bars, card bars, and impact bars on scroll
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        // Score bars (left side of radar section)
+        e.target.querySelectorAll('.ind-sbar').forEach(function(b){ b.style.width = b.dataset.w; });
+        // Radar polygon draw-in
+        var poly = e.target.querySelector('#ind-radar-poly');
+        if(poly){ poly.style.transform = 'scale(1)'; poly.classList.add('animated'); }
+        // Radar dots pulse
+        e.target.querySelectorAll('.ind-radar-dot').forEach(function(d){ d.setAttribute('opacity','1'); d.classList.add('animated'); });
+        // Card bars
+        e.target.querySelectorAll('.ind-card-bar').forEach(function(b){ b.style.width = b.dataset.w; });
+        // Impact bars
+        e.target.querySelectorAll('.ind-impact-bar').forEach(function(b){ b.style.width = b.dataset.w; });
+        obs.unobserve(e.target);
+      });
+    }, {threshold:0.15});
+    // Observe each section that has animated elements
+    document.querySelectorAll('#page-industries section').forEach(function(s){ obs.observe(s); });
+  })();
+  </script>
+
+  <footer style="background:#f7f7f5;color:#000;">
     <div class="footer-grid">
       <div>
         <div class="footer-brand">AQOMI <em>Studios</em></div>
-        <p class="footer-tagline">Elite branding and design agency. Canada's #1 rated creative studio. 3,500+ brand identities across 40 countries.</p>
-        <div style="margin-top:24px;"><a href="#" class="btn-forge" onclick="showPage('book')" style="font-size:10px;padding:12px 24px;">Book a Call</a></div>
+        <p class="footer-tagline">Elite branding and design agency. Canada&rsquo;s #1 rated creative studio. 3,500+ brand identities across 40 countries.</p>
+        <div style="margin-top:24px;"><a href="#" class="btn-forge" onclick="showPage('book')" style="font-size:10px;padding:12px 24px;text-transform:uppercase;letter-spacing:.2em;">BOOK A CALL</a></div>
       </div>
-      <div><div class="footer-col-head">Navigate</div><ul class="footer-links"><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('process')">Process</a></li><li><a href="#" onclick="showPage('studio')">Studio</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('book')">Book a Call</a></li></ul></div>
-      <div><div class="footer-col-head">Services</div><ul class="footer-links"><li><a href="#">Brand Essentials</a></li><li><a href="#">Studio Retainer</a></li><li><a href="#">Full Build</a></li><li><a href="#">DreamLab</a></li><li><a href="#">Brand Management</a></li></ul></div>
-      <div><div class="footer-col-head">Contact</div><ul class="footer-links"><li><a href="mailto:info@aqomi.com">info@aqomi.com</a></li><li><a href="mailto:press@aqomi.com">Press: press@aqomi.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="https://aqomi.com" target="_blank">aqomi.com &rarr;</a></li></ul></div>
+      <div><div class="footer-col-head">Navigate</div><ul class="footer-links"><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('industries')">Industries</a></li><li><a href="#" onclick="showPage('process')">Process</a></li><li><a href="#" onclick="showPage('studio')">Studio</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('book')">Book a Call</a></li></ul></div>
+      <div><div class="footer-col-head">Services</div><ul class="footer-links"><li><a href="#" onclick="showPage('services')">Brand Essentials</a></li><li><a href="#" onclick="showPage('services')">Studio Retainer</a></li><li><a href="#" onclick="showPage('services')">Full Build</a></li><li><a href="#" onclick="showPage('services')">DreamLab</a></li><li><a href="#" onclick="showPage('services')">Premium Production</a></li><li><a href="#" onclick="showPage('services')">Brand Management</a></li></ul></div>
+      <div><div class="footer-col-head">Contact</div><ul class="footer-links"><li><a href="mailto:hello@aqomi.com">hello@aqomi.com</a></li><li><a href="mailto:press@aqomi.com">Press: press@aqomi.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="#">Pinterest</a></li><li><a href="https://aqomi.com" target="_blank">aqomi.com &rarr;</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&copy; 2025 AQOMI Studios. All rights reserved.</span><span>Clutch #1 Canada &middot; #8 North America &middot; <a href="#" onclick="showPage('careers')">Careers</a> &middot; <a href="#">View Reviews</a></span></div>
   </footer>
