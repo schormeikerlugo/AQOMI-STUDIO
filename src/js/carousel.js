@@ -1,14 +1,6 @@
 /**
  * Infinite auto-scrolling carousel — reusable for home + process pages
- *
- * @param {Object} config
- * @param {string} config.trackId      - ID of the track element
- * @param {string} config.progressId   - ID of the progress bar fill
- * @param {string} config.counterId    - ID of the counter text
- * @param {string} config.prevBtnId    - ID of the prev button
- * @param {string} config.nextBtnId    - ID of the next button
- * @param {string} config.sectionId    - ID of wrapping section (for hover pause)
- * @param {number} [config.speed=1.1]  - Pixels per frame
+ * Pauses RAF when carousel is not visible in viewport
  */
 export function initCarousel(config) {
   const track   = document.getElementById(config.trackId);
@@ -21,7 +13,6 @@ export function initCarousel(config) {
 
   const speed = config.speed || 1.1;
 
-  // Clone cards for seamless loop
   const cards = Array.from(track.querySelectorAll('.car-card'));
   const total = cards.length;
   cards.forEach((c) => track.appendChild(c.cloneNode(true)));
@@ -31,6 +22,8 @@ export function initCarousel(config) {
   let isDragging = false;
   let startX = 0;
   let dragStart = 0;
+  let rafId = null;
+  let visible = false;
 
   function totalW() {
     let w = 0;
@@ -60,6 +53,10 @@ export function initCarousel(config) {
   }
 
   function loop() {
+    if (!visible || document.hidden) {
+      rafId = requestAnimationFrame(loop);
+      return;
+    }
     if (!paused) {
       offset += speed;
       const tw = totalW();
@@ -73,8 +70,15 @@ export function initCarousel(config) {
         applyOffset(false);
       }
     }
-    requestAnimationFrame(loop);
+    rafId = requestAnimationFrame(loop);
   }
+
+  // IntersectionObserver: only animate when visible
+  const obs = new IntersectionObserver(
+    (entries) => { visible = entries[0].isIntersecting; },
+    { threshold: 0.05 }
+  );
+  obs.observe(track.parentElement);
 
   // Pause on section hover
   if (config.sectionId) {
@@ -85,7 +89,6 @@ export function initCarousel(config) {
     }
   }
 
-  // Arrow buttons
   function jumpBy(dir) {
     const tw = totalW();
     const cardAvg = tw / total;
@@ -96,7 +99,6 @@ export function initCarousel(config) {
   if (btnPrev) btnPrev.addEventListener('click', () => jumpBy(-1));
   if (btnNext) btnNext.addEventListener('click', () => jumpBy(1));
 
-  // Drag to scrub
   track.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.clientX;
@@ -118,7 +120,6 @@ export function initCarousel(config) {
     paused = false;
   });
 
-  // Touch
   track.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     dragStart = offset;
@@ -135,7 +136,6 @@ export function initCarousel(config) {
     paused = false;
   });
 
-  // Start
   applyOffset(true);
   loop();
 }

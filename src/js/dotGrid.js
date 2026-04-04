@@ -1,9 +1,21 @@
 /**
  * Animated dot grid canvas for the process page
+ * Only runs RAF when the process page is active
+ * Resilient to lazy loading
  */
-export function initDotGrid() {
+import { onPageActivate } from './router.js';
+
+let gridInitialized = false;
+let rafId = null;
+let running = false;
+
+function setupGrid() {
+  if (gridInitialized) return;
+
   const canvas = document.getElementById('proc-canvas');
   if (!canvas) return;
+
+  gridInitialized = true;
 
   const ctx = canvas.getContext('2d');
   let dots = [];
@@ -35,12 +47,7 @@ export function initDotGrid() {
   }
 
   function draw() {
-    // Only run when process page is visible
-    const processPage = document.getElementById('page-process');
-    if (!processPage || !processPage.classList.contains('active')) {
-      requestAnimationFrame(draw);
-      return;
-    }
+    if (!running) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     t += 0.008;
@@ -57,10 +64,53 @@ export function initDotGrid() {
       ctx.fill();
     }
 
-    requestAnimationFrame(draw);
+    rafId = requestAnimationFrame(draw);
   }
+
+  window.startDotGrid = function() {
+    if (running) return;
+    running = true;
+    rafId = requestAnimationFrame(draw);
+  };
+
+  window.stopDotGrid = function() {
+    running = false;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  };
 
   resize();
   window.addEventListener('resize', resize);
-  draw();
+
+  // Start if process page is already active
+  const processPage = document.getElementById('page-process');
+  if (processPage && processPage.classList.contains('active')) {
+    window.startDotGrid();
+  }
+}
+
+export function initDotGrid() {
+  // Try immediately
+  setupGrid();
+
+  // On page change
+  onPageActivate((pageId) => {
+    if (pageId === 'process') {
+      setupGrid(); // ensure initialized
+      if (window.startDotGrid) window.startDotGrid();
+    } else {
+      if (window.stopDotGrid) window.stopDotGrid();
+    }
+  });
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (window.stopDotGrid) window.stopDotGrid();
+    } else {
+      const pp = document.getElementById('page-process');
+      if (pp && pp.classList.contains('active') && window.startDotGrid) {
+        window.startDotGrid();
+      }
+    }
+  });
 }

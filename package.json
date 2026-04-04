@@ -8,10 +8,15 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": ["branding", "design", "agency"],
+  "keywords": [
+    "branding",
+    "design",
+    "agency"
+  ],
   "author": "AQOMI Studios",
   "license": "ISC",
   "devDependencies": {
-    "vite": "^8.0.3"
+    "vite": "^8.0.3",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

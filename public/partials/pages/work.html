@@ -1,7 +1,10 @@
-<div id="page-work" class="page">
-  <div class="page-hero" style="padding-bottom:48px;border-bottom:none;">
-    <span class="page-eyebrow">Portfolio Â· Behance</span>
-    <h1 class="page-title">Selected<br><em>Work</em></h1>
+<div id="page-work" class="page work-dark">
+  <div style="position:relative;overflow:hidden;background:#000000;">
+    <canvas id="work-mesh-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;"></canvas>
+    <div class="page-hero" style="position:relative;z-index:1;padding-bottom:48px;border-bottom:none;background:transparent;">
+      <span class="page-eyebrow" style="color:#c8f026;">The Projects We Can Share</span>
+      <h1 class="page-title" style="color:#ffffff;">Selected<br><em style="color:#ffffff;">Work</em></h1>
+    </div>
   </div>
 
   <div class="filter-bar">
@@ -140,19 +143,20 @@
     </div>
 
   </div>
-  <div style="padding:48px 80px;text-align:center;border-top:1px solid var(--rule);">
-    <a href="https://www.behance.net/aqomi" target="_blank" class="btn-forge" style="font-size:10px;padding:14px 32px;">View Full Portfolio on Behance Ã-Â-Â-</a>
+  <div style="padding:48px 80px;text-align:center;background:#000;border-top:1px solid rgba(255,255,255,0.08);">
+    <a href="https://www.behance.net/aqomi" target="_blank" class="btn-forge" style="font-size:10px;padding:14px 32px;background:#fff;color:#000;">View Full Portfolio on Behance &rarr;</a>
   </div>
-    <footer>
+
+  <footer style="background:#f7f7f5;color:#000;">
     <div class="footer-grid">
       <div>
         <div class="footer-brand">AQOMI <em>Studios</em></div>
-        <p class="footer-tagline">Elite branding and design agency. Canada's #1 rated creative studio. 3,500+ brand identities across 40 countries.</p>
-        <div style="margin-top:24px;"><a href="#" class="btn-forge" onclick="showPage('book')" style="font-size:10px;padding:12px 24px;">Book a Call</a></div>
+        <p class="footer-tagline">Elite branding and design agency. Canada&rsquo;s #1 rated creative studio. 3,500+ brand identities across 40 countries.</p>
+        <div style="margin-top:24px;"><a href="#" class="btn-forge" onclick="showPage('book')" style="font-size:10px;padding:12px 24px;text-transform:uppercase;letter-spacing:.2em;">BOOK A CALL</a></div>
       </div>
-      <div><div class="footer-col-head">Navigate</div><ul class="footer-links"><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('process')">Process</a></li><li><a href="#" onclick="showPage('studio')">Studio</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('book')">Book a Call</a></li></ul></div>
-      <div><div class="footer-col-head">Services</div><ul class="footer-links"><li><a href="#">Brand Essentials</a></li><li><a href="#">Studio Retainer</a></li><li><a href="#">Full Build</a></li><li><a href="#">DreamLab</a></li><li><a href="#">Brand Management</a></li></ul></div>
-      <div><div class="footer-col-head">Contact</div><ul class="footer-links"><li><a href="mailto:info@aqomi.com">info@aqomi.com</a></li><li><a href="mailto:press@aqomi.com">Press: press@aqomi.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="https://aqomi.com" target="_blank">aqomi.com &rarr;</a></li></ul></div>
+      <div><div class="footer-col-head">Navigate</div><ul class="footer-links"><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('industries')">Industries</a></li><li><a href="#" onclick="showPage('process')">Process</a></li><li><a href="#" onclick="showPage('studio')">Studio</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('book')">Book a Call</a></li></ul></div>
+      <div><div class="footer-col-head">Services</div><ul class="footer-links"><li><a href="#" onclick="showPage('services')">Brand Essentials</a></li><li><a href="#" onclick="showPage('services')">Studio Retainer</a></li><li><a href="#" onclick="showPage('services')">Full Build</a></li><li><a href="#" onclick="showPage('services')">DreamLab</a></li><li><a href="#" onclick="showPage('services')">Premium Production</a></li><li><a href="#" onclick="showPage('services')">Brand Management</a></li></ul></div>
+      <div><div class="footer-col-head">Contact</div><ul class="footer-links"><li><a href="mailto:hello@aqomi.com">hello@aqomi.com</a></li><li><a href="mailto:press@aqomi.com">Press: press@aqomi.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="#">Pinterest</a></li><li><a href="https://aqomi.com" target="_blank">aqomi.com &rarr;</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&copy; 2025 AQOMI Studios. All rights reserved.</span><span>Clutch #1 Canada &middot; #8 North America &middot; <a href="#" onclick="showPage('careers')">Careers</a> &middot; <a href="#">View Reviews</a></span></div>
   </footer>

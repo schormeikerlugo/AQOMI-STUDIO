@@ -1,12 +1,12 @@
 /**
  * Custom cursor — dot + ring that follow the pointer
+ * Pauses when tab is hidden
  */
 export function initCursor() {
   const cur  = document.getElementById('cur');
   const ring = document.getElementById('cur-r');
   if (!cur || !ring) return;
 
-  // Only show on non-touch devices
   if ('ontouchstart' in window) {
     cur.style.display = 'none';
     ring.style.display = 'none';
@@ -20,6 +20,8 @@ export function initCursor() {
   let my = 0;
   let rx = 0;
   let ry = 0;
+  let rafId = null;
+  let running = true;
 
   document.addEventListener('mousemove', (e) => {
     mx = e.clientX;
@@ -29,12 +31,23 @@ export function initCursor() {
   });
 
   function animateRing() {
+    if (!running) return;
     rx += (mx - rx) * 0.15;
     ry += (my - ry) * 0.15;
     ring.style.left = rx + 'px';
     ring.style.top  = ry + 'px';
-    requestAnimationFrame(animateRing);
+    rafId = requestAnimationFrame(animateRing);
   }
 
   animateRing();
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      running = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    } else {
+      running = true;
+      animateRing();
+    }
+  });
 }

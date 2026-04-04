@@ -97,6 +97,16 @@ nav {
   width: 100%;
 }
 
+/* Nav dark mode (for dark pages like Work) */
+nav.nav-dark .nav-logo { color: #fff; }
+nav.nav-dark .nav-logo-accent { color: rgba(255,255,255,0.6); }
+nav.nav-dark .nav-link { color: rgba(255,255,255,0.5); }
+nav.nav-dark .nav-link:hover,
+nav.nav-dark .nav-link.active-page { color: #fff; }
+nav.nav-dark .nav-link::after { background: #fff; }
+nav.nav-dark .nav-cta { background: #c8f026; color: #000; }
+nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
+
 .nav-cta {
   font-family: var(--ff-mono);
   font-size: 10px;

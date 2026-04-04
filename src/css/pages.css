@@ -319,8 +319,8 @@
 
 .wfg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 24px 64px 64px; background: #fff; }
 .wfi { position: relative; overflow: hidden; aspect-ratio: 3/4; border-radius: 12px; background: #e8e8e8; cursor: pointer; }
-.wfi.wide { aspect-ratio: 4/5; }
-.wfi.tall { aspect-ratio: 2/3; }
+.wfi.wide { aspect-ratio: 3/4; }
+.wfi.tall { aspect-ratio: 3/4; }
 .wfi.big  { aspect-ratio: 3/4; }
 .wfi-bg { position: absolute; inset: 0; overflow: hidden; }
 .wfi-bg img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1); }
@@ -335,6 +335,14 @@
 .filter-bar { display: flex; gap: 4px; padding: 32px 80px 28px; }
 .f-btn { font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; padding: 9px 18px; border: 1px solid var(--rule); background: transparent; color: var(--dim); transition: all 0.2s; cursor: pointer; }
 .f-btn.active, .f-btn:hover { background: var(--forge); border-color: var(--forge); color: #c8f026; }
+
+/* Work page dark mode */
+.work-dark { background: #000; }
+.work-dark .filter-bar { background: #000; }
+.work-dark .f-btn { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); }
+.work-dark .f-btn.active, .work-dark .f-btn:hover { background: #c8f026; border-color: #c8f026; color: #000; }
+.work-dark .wfg { background: #000; }
+.work-dark .wfi { background: #1a1a1a; }
 
 /* ══════════════════════════════════
    SERVICES PAGE

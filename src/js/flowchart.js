@@ -1,9 +1,17 @@
 /**
  * Animated process flowchart — intersection-triggered
+ * Interval is cleaned up on page change
  */
-export function initFlowchart() {
+import { registerCleanup, onPageActivate } from './router.js';
+
+let flowchartIntervalId = null;
+
+let flowchartReady = false;
+
+function setupFlowchart() {
   const wrap = document.getElementById('fc-wrap');
-  if (!wrap) return;
+  if (!wrap || flowchartReady) return;
+  flowchartReady = true;
 
   let fired = false;
 
@@ -13,26 +21,26 @@ export function initFlowchart() {
 
     const steps = [
       { el: 'fcn1',       t: 0,    type: 'node'    },
-      { el: 'fc-c1',      t: 500,  type: 'conn'    },
-      { el: 'fcn2',       t: 900,  type: 'node'    },
-      { el: 'fc-c2',      t: 1400, type: 'conn'    },
-      { el: 'fc-dia',     t: 1800, type: 'dia'     },
-      { el: 'fc-c3',      t: 2400, type: 'conn'    },
-      { el: 'fc-yes-lbl', t: 2500, type: 'label'   },
-      { el: 'fcn3',       t: 2600, type: 'node'    },
-      { el: 'fc-c4',      t: 3200, type: 'conn'    },
-      { el: 'fcn4',       t: 3700, type: 'node'    },
-      { el: 'fc-c5',      t: 4300, type: 'conn'    },
-      { el: 'fcn5',       t: 4700, type: 'node'    },
-      { el: 'fc-c6',      t: 5300, type: 'conn'    },
-      { el: 'fcn6',       t: 5700, type: 'node'    },
-      { el: 'fc-c7',      t: 6200, type: 'conn'    },
-      { el: 'fc-no-lbl',  t: 6400, type: 'label'   },
-      { el: 'fc-iter',    t: 6600, type: 'node'    },
-      { el: 'fc-c8',      t: 7100, type: 'conn'    },
-      { el: 'fc-back-lbl',t: 7500, type: 'label'   },
-      { el: 'fc-call',    t: 7800, type: 'callout' },
-      { el: 'fc-c9',      t: 8400, type: 'conn'    },
+      { el: 'fc-c1',      t: 250,  type: 'conn'    },
+      { el: 'fcn2',       t: 450,  type: 'node'    },
+      { el: 'fc-c2',      t: 700,  type: 'conn'    },
+      { el: 'fc-dia',     t: 900,  type: 'dia'     },
+      { el: 'fc-c3',      t: 1200, type: 'conn'    },
+      { el: 'fc-yes-lbl', t: 1250, type: 'label'   },
+      { el: 'fcn3',       t: 1300, type: 'node'    },
+      { el: 'fc-c4',      t: 1600, type: 'conn'    },
+      { el: 'fcn4',       t: 1850, type: 'node'    },
+      { el: 'fc-c5',      t: 2150, type: 'conn'    },
+      { el: 'fcn5',       t: 2350, type: 'node'    },
+      { el: 'fc-c6',      t: 2650, type: 'conn'    },
+      { el: 'fcn6',       t: 2850, type: 'node'    },
+      { el: 'fc-c7',      t: 3100, type: 'conn'    },
+      { el: 'fc-no-lbl',  t: 3200, type: 'label'   },
+      { el: 'fc-iter',    t: 3300, type: 'node'    },
+      { el: 'fc-c8',      t: 3550, type: 'conn'    },
+      { el: 'fc-back-lbl',t: 3750, type: 'label'   },
+      { el: 'fc-call',    t: 3900, type: 'callout' },
+      { el: 'fc-c9',      t: 4200, type: 'conn'    },
     ];
 
     steps.forEach((s) => {
@@ -56,11 +64,11 @@ export function initFlowchart() {
       }, s.t);
     });
 
-    // Looping active node highlight
+    // Looping active node highlight — starts after flowchart finishes
     setTimeout(() => {
       const nodeIds = ['fcn1', 'fcn2', 'fcn3', 'fcn4', 'fcn5', 'fcn6'];
       let idx = 0;
-      setInterval(() => {
+      flowchartIntervalId = setInterval(() => {
         nodeIds.forEach((id) => {
           const n = document.getElementById(id);
           if (n) n.classList.remove('fc-active');
@@ -69,7 +77,7 @@ export function initFlowchart() {
         if (n) n.classList.add('fc-active');
         idx = (idx + 1) % nodeIds.length;
       }, 3000);
-    }, 4000);
+    }, 2200);
   }
 
   const obs = new IntersectionObserver(
@@ -83,4 +91,22 @@ export function initFlowchart() {
   );
 
   obs.observe(wrap);
+}
+
+export function initFlowchart() {
+  // Try immediately
+  setupFlowchart();
+
+  // Also try when process page activates (lazy loaded)
+  onPageActivate((pageId) => {
+    if (pageId === 'process') setTimeout(setupFlowchart, 50);
+  });
+
+  // Clean up interval when leaving the process page
+  registerCleanup(() => {
+    if (flowchartIntervalId) {
+      clearInterval(flowchartIntervalId);
+      flowchartIntervalId = null;
+    }
+  });
 }
