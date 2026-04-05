@@ -87,7 +87,7 @@ export function initRoadmap() {
 
   // Also try when process page activates (lazy loaded)
   onPageActivate((pageId) => {
-    if (pageId === 'process') {
+    if (pageId === 'why') {
       setTimeout(setup, 50);
     }
   });

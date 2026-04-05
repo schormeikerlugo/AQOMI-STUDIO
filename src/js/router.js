@@ -62,7 +62,6 @@ function updateNav(id) {
     work: 'Work',
     industries: 'Industries',
     services: 'Services',
-    process: 'Process',
     studio: 'Studio',
     why: 'The Why',
     careers: 'Careers',

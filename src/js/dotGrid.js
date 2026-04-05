@@ -82,7 +82,7 @@ function setupGrid() {
   window.addEventListener('resize', resize);
 
   // Start if process page is already active
-  const processPage = document.getElementById('page-process');
+  const processPage = document.getElementById('page-why');
   if (processPage && processPage.classList.contains('active')) {
     window.startDotGrid();
   }
@@ -94,7 +94,7 @@ export function initDotGrid() {
 
   // On page change
   onPageActivate((pageId) => {
-    if (pageId === 'process') {
+    if (pageId === 'why') {
       setupGrid(); // ensure initialized
       if (window.startDotGrid) window.startDotGrid();
     } else {
@@ -107,7 +107,7 @@ export function initDotGrid() {
     if (document.hidden) {
       if (window.stopDotGrid) window.stopDotGrid();
     } else {
-      const pp = document.getElementById('page-process');
+      const pp = document.getElementById('page-why');
       if (pp && pp.classList.contains('active') && window.startDotGrid) {
         window.startDotGrid();
       }
