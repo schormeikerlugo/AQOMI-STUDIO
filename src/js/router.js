@@ -1,10 +1,48 @@
 /**
- * SPA Router — page wipe transitions, nav updates, scroll reveal
+ * SPA Router — history API, page wipe transitions, nav updates, scroll reveal
  */
 import { triggerReveals, animBar } from './reveals.js';
 import { ensurePageLoaded } from './pageLoader.js';
 
 const wipe = document.getElementById('page-wipe');
+
+// ── Route mapping: pageId <-> URL slug ──
+const ROUTE_MAP = {
+  home: '',
+  why: 'the-why',
+  work: 'work',
+  services: 'services',
+  industries: 'industries',
+  studio: 'studio',
+  careers: 'careers',
+  book: 'book',
+  start: 'start',
+};
+
+// Project pages: proj-shoe-guru -> work/shoe-guru
+function pageIdToSlug(id) {
+  if (ROUTE_MAP[id] !== undefined) return ROUTE_MAP[id];
+  if (id.startsWith('proj-')) return 'work/' + id.replace('proj-', '');
+  return id;
+}
+
+function slugToPageId(slug) {
+  // Remove leading/trailing slashes
+  slug = slug.replace(/^\/|\/$/g, '');
+  if (!slug) return 'home';
+
+  // Check main pages
+  for (const [id, s] of Object.entries(ROUTE_MAP)) {
+    if (s === slug) return id;
+  }
+
+  // Check project pages: work/shoe-guru -> proj-shoe-guru
+  if (slug.startsWith('work/')) {
+    return 'proj-' + slug.replace('work/', '');
+  }
+
+  return 'home';
+}
 
 // ── Lifecycle: cleanup callbacks run before each page change ──
 const _cleanups = [];
@@ -14,18 +52,19 @@ export function registerCleanup(fn) { _cleanups.push(fn); }
 const _activations = [];
 export function onPageActivate(fn) { _activations.push(fn); }
 
-export async function showPage(id) {
+let currentPageId = null;
+
+export async function showPage(id, pushHistory = true) {
   if (!wipe) return;
+  if (id === currentPageId) return;
 
   wipe.style.transition = 'transform .32s cubic-bezier(.86,0,.07,1)';
   wipe.style.transformOrigin = 'left';
   wipe.style.transform = 'scaleX(1)';
 
-  // Ensure the page HTML is loaded before transitioning
   await ensurePageLoaded(id);
 
   setTimeout(() => {
-    // Run all cleanup callbacks before switching
     _cleanups.forEach((fn) => fn(id));
 
     document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
@@ -38,9 +77,19 @@ export async function showPage(id) {
       document.body.scrollTop = 0;
     }
 
+    currentPageId = id;
+
+    // Update URL
+    if (pushHistory) {
+      const slug = pageIdToSlug(id);
+      const url = '/' + slug + (slug ? '/' : '');
+      history.pushState({ pageId: id }, '', url);
+    }
+
+    // Update document title
+    updateDocTitle(id);
     updateNav(id);
 
-    // Run activation callbacks
     _activations.forEach((fn) => fn(id));
 
     setTimeout(() => {
@@ -51,6 +100,20 @@ export async function showPage(id) {
     wipe.style.transformOrigin = 'right';
     wipe.style.transform = 'scaleX(0)';
   }, 330);
+}
+
+function updateDocTitle(id) {
+  const titles = {
+    home: 'AQOMI Studios | Elite Branding & Design Agency',
+    why: 'The Why | AQOMI Studios',
+    work: 'Work | AQOMI Studios',
+    services: 'Services & Pricing | AQOMI Studios',
+    industries: 'Industries | AQOMI Studios',
+    studio: 'Studio | AQOMI Studios',
+    careers: 'Careers | AQOMI Studios',
+    book: 'Book a Call | AQOMI Studios',
+  };
+  document.title = titles[id] || 'AQOMI Studios';
 }
 
 function updateNav(id) {
@@ -77,9 +140,25 @@ function updateNav(id) {
 }
 
 /**
+ * Handle browser back/forward buttons
+ */
+export function initPopState() {
+  window.addEventListener('popstate', (e) => {
+    const id = e.state?.pageId || slugToPageId(location.pathname);
+    showPage(id, false);
+  });
+}
+
+/**
+ * Detect current URL on initial load and show the correct page
+ */
+export function getInitialPageId() {
+  return slugToPageId(location.pathname);
+}
+
+/**
  * Nav background on scroll — transparent on hero, blur on other pages
  */
-// Dark pages where nav should be white text
 const DARK_PAGES = ['work'];
 
 function applyNavTheme() {
@@ -109,22 +188,15 @@ function applyNavTheme() {
 
 export function initNavScroll() {
   window.addEventListener('scroll', applyNavTheme, { passive: true });
-  // Apply immediately on page change + slightly after scroll resets
   onPageActivate(() => { applyNavTheme(); setTimeout(applyNavTheme, 50); });
 }
 
-/**
- * Prevent default for all # links
- */
 export function initLinkPrevention() {
   document.querySelectorAll('a[href="#"]').forEach((a) => {
     a.addEventListener('click', (e) => e.preventDefault());
   });
 }
 
-/**
- * Mobile nav toggle
- */
 export function initMobileNav() {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');

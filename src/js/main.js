@@ -19,7 +19,7 @@ import '../css/responsive.css';
 // ── JS Module Imports ────────────────────────────
 import { loadAllPages } from './pageLoader.js';
 import { initCursor } from './cursor.js';
-import { showPage, initNavScroll, initLinkPrevention, initMobileNav } from './router.js';
+import { showPage, initNavScroll, initLinkPrevention, initMobileNav, initPopState, getInitialPageId } from './router.js';
 import { initReveals, triggerReveals } from './reveals.js';
 import { initEmbers } from './embers.js';
 import { initCarousel } from './carousel.js';
@@ -36,8 +36,22 @@ window.showPage = showPage;
 
 // ── Initialize everything on DOM ready ───────────
 document.addEventListener('DOMContentLoaded', async () => {
+  // Detect which page to show from the URL
+  const initialPage = getInitialPageId();
+
   // Load all HTML partials before initializing
   await loadAllPages();
+
+  // Show the correct page based on URL (if not home, which is already active)
+  if (initialPage !== 'home') {
+    document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
+    const pg = document.getElementById('page-' + initialPage);
+    if (pg) pg.classList.add('active');
+  }
+
+  // Replace initial history state
+  history.replaceState({ pageId: initialPage }, '');
+
   // Fade in body
   document.body.style.opacity = '0';
   document.body.style.transition = 'opacity .6s';
@@ -104,6 +118,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Voice Assistant
   initVoiceAssistant();
+
+  // History API — back/forward buttons
+  initPopState();
 
   // Trigger initial reveals after a brief delay
   setTimeout(triggerReveals, 400);

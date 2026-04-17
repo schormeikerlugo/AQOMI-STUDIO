@@ -1,0 +1,72 @@
+{
+  "home": {
+    "slug": "",
+    "title": "AQOMI Studios | Elite Branding & Design Agency — Canada's #1 Creative Studio",
+    "description": "AQOMI Studios is Canada's #1 ranked branding and design agency. 3,500+ brand identities delivered across 40 countries. We create brands the world can't ignore."
+  },
+  "why": {
+    "slug": "the-why",
+    "title": "The Why | AQOMI Studios — Why Branding Matters",
+    "description": "Discover why branding is the most powerful business tool. The science, the philosophy, and the proof behind everything AQOMI Studios builds."
+  },
+  "work": {
+    "slug": "work",
+    "title": "Work | AQOMI Studios — Selected Projects & Portfolio",
+    "description": "Explore 3,500+ brand identities created by AQOMI Studios across 40 countries. Branding, identity, campaigns, and creative direction for global brands."
+  },
+  "services": {
+    "slug": "services",
+    "title": "Services & Pricing | AQOMI Studios — Day Rate, Retainer & Full Build",
+    "description": "Three ways to work with AQOMI Studios. Day Rate from $2,500, Studio Retainer from $5,000/month, Full Production Build from $25,000. Transparent pricing."
+  },
+  "industries": {
+    "slug": "industries",
+    "title": "Industries | AQOMI Studios — Every Vertical, One Standard",
+    "description": "From Fortune 500 to startups. 18 years of branding across food, sports, healthcare, architecture, automotive, aviation, and more."
+  },
+  "studio": {
+    "slug": "studio",
+    "title": "Studio | AQOMI Studios — About the Agency",
+    "description": "Meet the team behind Canada's #1 creative studio. 18 years of craft, 40 countries served, and an uncompromising standard."
+  },
+  "careers": {
+    "slug": "careers",
+    "title": "Careers | AQOMI Studios — Join the Team",
+    "description": "Work at Canada's top-ranked branding agency. View open positions at AQOMI Studios."
+  },
+  "book": {
+    "slug": "book",
+    "title": "Book a Call | AQOMI Studios — Start Your Project",
+    "description": "Book a free discovery call with AQOMI Studios. We respond within 48 hours with a tailored brief."
+  },
+  "start": {
+    "slug": "start",
+    "title": "Start a Project | AQOMI Studios",
+    "description": "Ready to build something unforgettable? Start your project with AQOMI Studios."
+  },
+  "proj-shoe-guru": { "slug": "work/shoe-guru", "title": "Shoe Guru | AQOMI Studios", "description": "Brand identity for Shoe Guru — international e-commerce brand shipped to 40+ countries." },
+  "proj-rockhard": { "slug": "work/rockhard", "title": "Rockhard | AQOMI Studios", "description": "Full identity system for Rockhard — a brand built for impact." },
+  "proj-aithr": { "slug": "work/aithr", "title": "Aithr | AQOMI Studios", "description": "Full identity system for Aithr — branding for tech." },
+  "proj-akogare": { "slug": "work/akogare", "title": "Akogare | AQOMI Studios", "description": "Brand identity for Akogare." },
+  "proj-adam-trent": { "slug": "work/adam-trent", "title": "Adam Trent | AQOMI Studios", "description": "Personal brand and campaign system for Adam Trent." },
+  "proj-metegrity": { "slug": "work/metegrity", "title": "Metegrity | AQOMI Studios", "description": "Identity ahead of Series B for Metegrity." },
+  "proj-northbay": { "slug": "work/northbay", "title": "NorthBay | AQOMI Studios", "description": "Luxury property development brand for NorthBay." },
+  "proj-operam": { "slug": "work/operam", "title": "Operam | AQOMI Studios", "description": "Identity and strategy for Operam." },
+  "proj-news930": { "slug": "work/news930", "title": "News930 | AQOMI Studios", "description": "Brand refresh for News930." },
+  "proj-penta": { "slug": "work/penta", "title": "Penta Hospitals | AQOMI Studios", "description": "Corporate identity system for Penta Hospitals." },
+  "proj-pansawan": { "slug": "work/pansawan", "title": "Pansawan | AQOMI Studios", "description": "Luxury brand and space design for Pansawan." },
+  "proj-dhd-surfing": { "slug": "work/dhd-surfing", "title": "DHD Surfing | AQOMI Studios", "description": "Action sports identity for DHD Surfing." },
+  "proj-jerry-sargeant": { "slug": "work/jerry-sargeant", "title": "Jerry Sargeant | AQOMI Studios", "description": "Complete personal brand for Jerry Sargeant." },
+  "proj-litter-robot": { "slug": "work/litter-robot", "title": "Litter-Robot | AQOMI Studios", "description": "Brand identity and campaign for Litter-Robot." },
+  "proj-china-southern": { "slug": "work/china-southern", "title": "China Southern Airlines | AQOMI Studios", "description": "Global airline identity for China Southern Airlines." },
+  "proj-visions": { "slug": "work/visions", "title": "Visions Enterprises | AQOMI Studios", "description": "Complete brand identity for Visions Enterprises." },
+  "proj-art-of-magic": { "slug": "work/art-of-magic", "title": "Art of Magic | AQOMI Studios", "description": "Full creative direction for Art of Magic." },
+  "proj-milk-shirts": { "slug": "work/milk-shirts", "title": "Milk Shirts | AQOMI Studios", "description": "Visual identity for Milk Shirts." },
+  "proj-karavan-kiev": { "slug": "work/karavan-kiev", "title": "Karavan Kiev | AQOMI Studios", "description": "Restaurant brand identity for Karavan Kiev." },
+  "proj-spirit-halloween": { "slug": "work/spirit-halloween", "title": "Spirit Halloween | AQOMI Studios", "description": "National campaign identity for Spirit Halloween." },
+  "proj-weexchange": { "slug": "work/weexchange", "title": "WeExchange | AQOMI Studios", "description": "Full brand identity for WeExchange." },
+  "proj-three-streams": { "slug": "work/three-streams", "title": "Three Streams | AQOMI Studios", "description": "Luxury property brand for Three Streams." },
+  "proj-rocket-runner": { "slug": "work/rocket-runner", "title": "Rocket Runner | AQOMI Studios", "description": "Brand and game identity for Rocket Runner." },
+  "proj-truckridge": { "slug": "work/truckridge", "title": "Truckridge | AQOMI Studios", "description": "Truck brand identity for Truckridge." },
+  "proj-wodna-wieza": { "slug": "work/wodna-wieza", "title": "Wodna Wieza | AQOMI Studios", "description": "Landmark brand identity for Wodna Wieza." }
+}

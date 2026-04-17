@@ -48,29 +48,21 @@ Este proyecto es una Aplicación de Una Sola Página (Single Page Application - 
 
 ## 📸 Galería del Proyecto
 
-### Inicio (Home)
-![Inicio](public/images/git/01Home.jpeg)
+| Inicio (Home) | El Porqué (The Why) |
+| --- | --- |
+| ![Inicio](public/images/git/01Home.jpeg) | ![El Porqué](public/images/git/02The_why.jpeg) |
 
-### El Porqué (The Why)
-![El Porqué](public/images/git/02The_why.jpeg)
+| Trabajo (Work) | Detalle de Trabajo (Work Project) |
+| --- | --- |
+| ![Trabajo](public/images/git/03Work.jpeg) | ![Detalle de Trabajo](public/images/git/04Work_proyect.jpeg) |
 
-### Trabajo (Work)
-![Trabajo](public/images/git/03Work.jpeg)
+| Industrias (Industries) | Servicios (Services) |
+| --- | --- |
+| ![Industrias](public/images/git/05Industries.jpeg) | ![Servicios](public/images/git/06Services.jpeg) |
 
-### Detalle de Trabajo (Work Project)
-![Detalle de Trabajo](public/images/git/04Work_proyect.jpeg)
-
-### Industrias (Industries)
-![Industrias](public/images/git/05Industries.jpeg)
-
-### Servicios (Services)
-![Servicios](public/images/git/06Services.jpeg)
-
-### El Estudio (Studio)
-![El Estudio](public/images/git/07Studio.jpeg)
-
-### Carrera (Careers)
-![Carrera](public/images/git/08Careers.jpeg)
+| El Estudio (Studio) | Carrera (Careers) |
+| --- | --- |
+| ![El Estudio](public/images/git/07Studio.jpeg) | ![Carrera](public/images/git/08Careers.jpeg) |
 
 ---
 
