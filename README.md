@@ -2,73 +2,76 @@
 
 ![AQOMI Studios](public/images/git/01Home.jpeg)
 
-**AQOMI Studios** is an elite branding and design agency—Canada's #1 ranked creative studio and #8 in North America on Clutch. We build brands the world can't ignore. With over 3,500+ brand identities delivered across 40 countries, we treat every design constraint as a problem to solve rather than a limitation. We specialize in high-fidelity visual identities, immersive digital experiences, and brand strategy.
+**AQOMI Studios** es una agencia creativa de diseño y branding de élite — clasificada como el estudio #1 en Canadá y #8 en Norteamérica en Clutch. Construimos marcas que el mundo no puede ignorar. Con más de 3,500 identidades de marca entregadas en 40 países, abordamos cada obstáculo de diseño como un problema a resolver en lugar de una limitación. Nos especializamos en identidades visuales de alta fidelidad, experiencias digitales inmersivas y estrategia de marca.
 
-## 🚀 Technologies Used
+## 🚀 Tecnologías Utilizadas
 
-This project is a high-performance Single Page Application (SPA) built without heavy frameworks to ensure maximum speed and control over every pixel and animation.
+Este proyecto es una Aplicación de Una Sola Página (Single Page Application - SPA) de alto rendimiento, construida sin frameworks pesados para garantizar la máxima velocidad y un control preciso sobre cada píxel y animación.
 
-- **HTML5**: Highly semantic and modularized into decoupled partials for dynamic loading.
-- **CSS3 (Vanilla)**: Employs a robust design system using CSS variables (tokens), modern layouts (Grid/Flexbox), smooth micro-animations, glassmorphism, and responsive design tailored for performance.
-- **JavaScript (Vanilla ES6)**: Features a custom SPA router with lifecycle hooks (`onPageActivate`, `registerCleanup`), intersection observers for scroll reveals, dynamic partial injection via `pageLoader.js`, custom cursor logic, and WebGL-based mesh gradients.
-- **Vite**: Ultra-fast build tool configured with `vite-plugin-compression` (Gzip and Brotli) for optimized production bundles.
+- **HTML5**: Estructurado de forma semántica y divido en "partials" (fragmentos) para permitir la carga dinámica de contenido.
+- **CSS3 (Vanilla)**: Utiliza un robusto sistema de diseño manejado con variables CSS (tokens), estructuras modernas (Grid/Flexbox), micro-animaciones fluidas, *glassmorphism* (efecto cristal) y diseño adaptativo a dispositivos móviles.
+- **JavaScript (Vanilla ES6)**: Cuenta con un enrutador SPA personalizado que incluye *lifecycle hooks* (métodos de ciclo de vida como `onPageActivate`, `registerCleanup`), observadores de intersección (Intersection Observers) para revelar elementos al desplazar, inyección dinámica de HTML a través de `pageLoader.js`, lógica interactiva en el cursor y fondos degradados (mesh gradients) con tecnología WebGL.
+- **Vite**: Herramienta de compilación ultrarrápida configurada con `vite-plugin-compression` (Gzip y Brotli) para optimizar drásticamente la capacidad de producción.
 
-## 📁 Project Structure
+## 📁 Estructura del Proyecto
 
 ```text
 ├── public/
 │   ├── images/
-│   │   ├── git/                # Showcase images (Home, Work, etc.)
-│   │   └── logos/              # High-fidelity SVG client logos
+│   │   ├── git/                # Imágenes de demostración para el README
+│   │   └── logos/              # Logotipos de clientes en formato SVG
 │   ├── partials/
-│   │   ├── components/         # Reusable HTML components (nav, footer, etc.)
-│   │   └── pages/              # HTML fragments for each SPA route
+│   │   ├── components/         # Componentes HTML reutilizables (nav, footer, etc.)
+│   │   └── pages/              # Fragmentos HTML para cada vista de la SPA
 │   ├── robots.txt
 │   └── sitemap.xml
 ├── src/
 │   ├── css/
-│   │   ├── animations.css      # Keyframes and transition logic
-│   │   ├── components.css      # Specialized component styles
-│   │   ├── layout.css          # Global grid and flex layouts
-│   │   ├── responsive.css      # Media queries for mobile/tablet
-│   │   ├── tokens.css          # Core CSS variables (colors, fonts)
-│   │   └── pages.css           # Route-specific aesthetic refinements
+│   │   ├── animations.css      # Keyframes y lógica de transiciones
+│   │   ├── components.css      # Estilos para componentes específicos
+│   │   ├── layout.css          # Estructuras globales (grid/flex)
+│   │   ├── responsive.css      # Media queries para adaptación móvil/tableta
+│   │   ├── tokens.css          # Variables CSS base (colores, tipografías)
+│   │   └── pages.css           # Refinamientos estéticos por cada vista
 │   └── js/
-│       ├── main.js             # Main entry point and initialization
-│       ├── pageLoader.js       # Dynamic DOM injection for partials
-│       ├── router.js           # Custom SPA routing and lifecycle management
-│       ├── meshGradient.js     # WebGL background rendering engine
-│       ├── cursor.js           # Custom interactive cursor
-│       ├── reveals.js          # Scroll-based intersection observers
-│       └── ...                 # Additional feature modules (roadmap, carousel, etc.)
-├── index.html                  # Main SPA shell
-├── package.json                # Project metadata and dependencies
-└── vite.config.js              # Vite build and compression configuration
+│       ├── main.js             # Punto de entrada principal e inicialización
+│       ├── pageLoader.js       # Inyección dinámica de los partials HTML
+│       ├── router.js           # Enrutador personalizado SPA
+│       ├── meshGradient.js     # Motor de renderizado del fondo WebGL
+│       ├── cursor.js           # Lógica del cursor interactivo oculto/visible
+│       ├── reveals.js          # Observadores de intersección por scroll
+│       └── ...                 # Módulos extra (carrusel, componentes varios)
+├── index.html                  # Core (shell) principal de la aplicación
+├── package.json                # Dependencias del proyecto
+└── vite.config.js              # Configuración de Vite y Compresión
 ```
 
-## 📸 Showcase
+## 📸 Galería del Proyecto
 
-### The Why
-![The Why](public/images/git/02The_why.jpeg)
+### Inicio (Home)
+![Inicio](public/images/git/01Home.jpeg)
 
-### Work
-![Work](public/images/git/03Work.jpeg)
+### El Porqué (The Why)
+![El Porqué](public/images/git/02The_why.jpeg)
 
-### Work Project Detail
-![Work Project](public/images/git/04Work_proyect.jpeg)
+### Trabajo (Work)
+![Trabajo](public/images/git/03Work.jpeg)
 
-### Industries
-![Industries](public/images/git/05Industries.jpeg)
+### Detalle de Trabajo (Work Project)
+![Detalle de Trabajo](public/images/git/04Work_proyect.jpeg)
 
-### Services
-![Services](public/images/git/06Services.jpeg)
+### Industrias (Industries)
+![Industrias](public/images/git/05Industries.jpeg)
 
-### Studio
-![Studio](public/images/git/07Studio.jpeg)
+### Servicios (Services)
+![Servicios](public/images/git/06Services.jpeg)
 
-### Careers
-![Careers](public/images/git/08Careers.jpeg)
+### El Estudio (Studio)
+![El Estudio](public/images/git/07Studio.jpeg)
+
+### Carrera (Careers)
+![Carrera](public/images/git/08Careers.jpeg)
 
 ---
 
-&copy; 2026 AQOMI Studios. All rights reserved.
+&copy; 2026 AQOMI Studios. Todos los derechos reservados.
