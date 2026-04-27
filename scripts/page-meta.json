@@ -44,6 +44,11 @@
     "title": "Start a Project | AQOMI Studios",
     "description": "Ready to build something unforgettable? Start your project with AQOMI Studios."
   },
+  "ai-leadgen": {
+    "slug": "ai-lead-generation",
+    "title": "AI-Powered Lead Generation | AQOMI Studios",
+    "description": "An AI agent that books qualified sales calls on your calendar — while you sleep. Average client gets 30+ qualified meetings per month. Cheaper than an SDR. 60-day guarantee."
+  },
   "proj-shoe-guru": { "slug": "work/shoe-guru", "title": "Shoe Guru | AQOMI Studios", "description": "Brand identity for Shoe Guru — international e-commerce brand shipped to 40+ countries." },
   "proj-rockhard": { "slug": "work/rockhard", "title": "Rockhard | AQOMI Studios", "description": "Full identity system for Rockhard — a brand built for impact." },
   "proj-aithr": { "slug": "work/aithr", "title": "Aithr | AQOMI Studios", "description": "Full identity system for Aithr — branding for tech." },

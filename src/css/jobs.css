@@ -1,5 +1,5 @@
 /* ══════════════════════════════════
-   CAREERS — Job Listings
+   CAREERS — Job Listings (Dark)
    ══════════════════════════════════ */
 
 .job-wrap {
@@ -9,11 +9,16 @@
 }
 
 .job-item {
-  background: #f5f5f7;
+  background: var(--coal);
+  border: 1px solid var(--rule);
   border-radius: 18px;
   overflow: hidden;
   margin-bottom: 10px;
+  transition: border-color 0.25s;
 }
+
+.job-item:hover { border-color: rgba(200, 240, 38, 0.25); }
+.job-item.open { border-color: var(--accent); }
 
 .job-header {
   display: flex;
@@ -26,7 +31,7 @@
 }
 
 .job-header:hover {
-  background: #ebebed;
+  background: var(--ember);
 }
 
 .job-header-left {
@@ -40,7 +45,7 @@
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.38);
+  color: var(--accent);
 }
 
 .job-title {
@@ -48,7 +53,7 @@
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #000;
+  color: var(--forge);
 }
 
 .job-header-right {
@@ -65,26 +70,27 @@
   text-transform: uppercase;
   padding: 5px 13px;
   border-radius: 100px;
-  background: rgba(0, 0, 0, 0.06);
-  color: rgba(0, 0, 0, 0.45);
+  background: var(--accent-dim);
+  color: var(--accent);
 }
 
 .job-chevron {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.07);
+  background: var(--ember);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), background 0.2s;
+  color: var(--dim);
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), background 0.2s, color 0.2s;
 }
 
 .job-item.open .job-chevron {
   transform: rotate(45deg);
-  background: rgba(0, 0, 0, 0.13);
+  background: var(--accent);
+  color: #000;
 }
 
 .job-body {
@@ -107,7 +113,7 @@
 .job-body p {
   font-size: 13px;
   line-height: 1.85;
-  color: rgba(0, 0, 0, 0.52);
+  color: var(--dim);
   font-weight: 300;
   margin: 0 0 18px;
 }
@@ -117,7 +123,7 @@
   font-size: 8px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.35);
+  color: var(--accent);
   margin-bottom: 10px;
   display: block;
 }
@@ -130,11 +136,11 @@
 
 .job-ul li {
   font-size: 12.5px;
-  color: rgba(0, 0, 0, 0.52);
+  color: var(--dim);
   font-weight: 300;
   padding: 6px 0 6px 16px;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--rule);
 }
 
 .job-ul li:last-child {
@@ -145,7 +151,7 @@
   content: '\2014';
   position: absolute;
   left: 0;
-  color: rgba(0, 0, 0, 0.3);
+  color: var(--accent);
 }
 
 .job-apply {
@@ -155,17 +161,18 @@
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #fff;
-  background: #000;
+  color: #000;
+  background: var(--accent);
   padding: 10px 20px;
   border-radius: 100px;
   text-decoration: none;
+  font-weight: 500;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .job-apply:hover {
-  background: #333;
+  background: var(--accent-soft);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  color: #c8f026;
+  box-shadow: 0 8px 20px var(--accent-dim), 0 0 18px var(--accent-glow);
+  color: #000;
 }

@@ -1,0 +1,144 @@
+/* ══════════════════════════════════
+   BACKGROUND LAYERS
+   Used selectively. Most sections stay #0a0a0a flat.
+   Order (z-index):
+     0 — base (--ink)
+     1 — video / mesh canvas
+     2 — accent layers (aurora, embers, dot grid)
+     3 — overlay (legibility scrim)
+     5 — content
+   ══════════════════════════════════ */
+
+/* ── Generic dark section helper ───────────────── */
+.bg-deep      { background: var(--ink); }
+.bg-elevated  { background: var(--ash); }
+.bg-card      { background: var(--coal); }
+
+/* Subtle vignette on dark sections to add depth */
+.bg-vignette {
+  position: relative;
+  isolation: isolate;
+}
+.bg-vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 0;
+}
+.bg-vignette > * { position: relative; z-index: 1; }
+
+/* ── Aurora orbs (CSS only, perf-cheap) ───────── */
+.bg-aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.bg-aurora::before,
+.bg-aurora::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.18;
+  will-change: transform;
+}
+.bg-aurora::before {
+  background: var(--accent);
+  top: -20vmax;
+  left: -10vmax;
+  animation: auroraDrift1 26s ease-in-out infinite alternate;
+}
+.bg-aurora::after {
+  background: #1d3300;
+  bottom: -20vmax;
+  right: -15vmax;
+  animation: auroraDrift2 32s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDrift1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(15vmax, 8vmax) scale(1.15); }
+}
+@keyframes auroraDrift2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-12vmax, -6vmax) scale(1.1); }
+}
+
+/* ── Subtle grain overlay (always-on, very cheap) ─ */
+.bg-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+
+/* ── Floating green dust (uses existing .embers logic) ── */
+.embers .ember {
+  background: var(--accent) !important;
+  box-shadow: 0 0 8px var(--accent-glow);
+  opacity: 0;
+}
+
+/* ── Hairline rule (separator over dark) ──────── */
+.hr-rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--rule) 20%,
+    var(--rule) 80%,
+    transparent 100%
+  );
+  border: 0;
+  margin: 0;
+}
+
+/* ── Glow halo utility (around CTAs / focal points) ── */
+.halo-accent {
+  position: relative;
+}
+.halo-accent::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(
+    circle at center,
+    var(--accent-glow) 0%,
+    transparent 60%
+  );
+  filter: blur(20px);
+  z-index: -1;
+  opacity: 0.6;
+  animation: haloPulse 4s ease-in-out infinite;
+}
+
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ── Reduced motion: disable expensive backgrounds ── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-aurora::before,
+  .bg-aurora::after,
+  .halo-accent::before {
+    animation: none;
+  }
+}

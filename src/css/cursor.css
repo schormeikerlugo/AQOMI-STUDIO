@@ -19,7 +19,7 @@
   position: fixed;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -31,12 +31,12 @@ body:has(a:hover) #cur,
 body:has(button:hover) #cur {
   width: 20px;
   height: 20px;
-  background: var(--molten);
+  background: var(--accent);
 }
 
 body:has(a:hover) #cur-r,
 body:has(button:hover) #cur-r {
   width: 56px;
   height: 56px;
-  border-color: var(--forge);
+  border-color: var(--accent);
 }

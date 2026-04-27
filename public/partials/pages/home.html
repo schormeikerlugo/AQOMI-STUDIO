@@ -1,12 +1,8 @@
 <div id="page-home" class="page active">
 
   <!-- HERO -->
-  <section class="hero">
-    <!-- WebGL Sine-Wave Chromatic Shader --- ported from WebGLShader component -->
-    <canvas id="mesh-canvas"></canvas>
-    <div class="hero-slash"></div>
+  <section class="hero" data-video="hero">
     <div class="embers" id="embers"></div>
-    <div class="hero-scan"></div>
     <div class="hero-mono">AS</div>
 
     <div class="hero-content">
@@ -80,35 +76,30 @@
   </div>
 
   <!-- STATS BAND -->
-  <!-- STATS --- floating glass tiles -->
-  <div style="background:#0d0d0d;padding-top:8px;padding-bottom:8px;">
+  <div class="stats-wrap">
     <div class="stats-band">
-      <div class="stat-cell reveal" style="background:#181818;border-color:rgba(255,255,255,0.08);box-shadow:none;">
-        <span class="stat-n" data-target="3500" data-suffix="+" style="color:#fff;">3,500+</span>
-        <span class="stat-l" style="color:#c8f026;">Projects Delivered</span>
-        <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,0.35);font-weight:300;margin-top:12px;">Brand
-          identities, campaigns, and creative systems built across every major industry.</p>
+      <div class="stat-cell reveal">
+        <span class="stat-n" data-target="3500" data-suffix="+">3,500+</span>
+        <span class="stat-l">Projects Delivered</span>
+        <p class="stat-desc">Brand identities, campaigns, and creative systems built across every major industry.</p>
       </div>
-      <div class="stat-cell reveal d1" style="background:#181818;border-color:rgba(255,255,255,0.08);box-shadow:none;">
-        <span class="stat-n" data-target="40" style="color:#fff;">40</span>
-        <span class="stat-l" style="color:#c8f026;;">Countries Served</span>
-        <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,0.35);font-weight:300;margin-top:12px;">Global
-          reach with work operating across six continents and 40 countries.</p>
+      <div class="stat-cell reveal d1">
+        <span class="stat-n" data-target="40">40</span>
+        <span class="stat-l">Countries Served</span>
+        <p class="stat-desc">Global reach with work operating across six continents and 40 countries.</p>
       </div>
-      <div class="stat-cell reveal d2" style="background:#181818;border-color:rgba(255,255,255,0.08);box-shadow:none;">
-        <span class="stat-n" style="color:#fff;">#1</span>
-        <span class="stat-l" style="color:#c8f026;">Clutch · Canada</span>
-        <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,0.35);font-weight:300;margin-top:12px;">Canada's
-          top-ranked branding agency on Clutch, the world's leading B2B platform.</p>
+      <div class="stat-cell reveal d2">
+        <span class="stat-n">#1</span>
+        <span class="stat-l">Clutch · Canada</span>
+        <p class="stat-desc">Canada's top-ranked branding agency on Clutch, the world's leading B2B platform.</p>
       </div>
-      <div class="stat-cell reveal d3" style="background:#181818;border-color:rgba(255,255,255,0.08);box-shadow:none;">
-        <span class="stat-n" data-target="18" data-suffix=" yrs" style="color:#fff;">18 yrs</span>
-        <span class="stat-l" style="color:#c8f026;">Of Craft</span>
-        <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,0.35);font-weight:300;margin-top:12px;">Eighteen
-          years building brands that define their categories and outlast trends.</p>
+      <div class="stat-cell reveal d3">
+        <span class="stat-n" data-target="18" data-suffix=" yrs">18 yrs</span>
+        <span class="stat-l">Of Craft</span>
+        <p class="stat-desc">Eighteen years building brands that define their categories and outlast trends.</p>
       </div>
     </div>
-  </div><!-- /stats wrapper -->
+  </div>
 
 
   <!-- MISSION -->
@@ -116,7 +107,7 @@
     <div class="mission-left">
       <span class="section-tag">01 &mdash; Mission</span>
       <h2 class="mission-headline reveal">
-        You only have <em style="font-style:italic;color:var(--forge);">1 shot</em><br>
+        You only have <em>1 shot</em><br>
         at a first impression.
       </h2>
       <div class="mission-cred reveal d1">
@@ -147,42 +138,31 @@
 
   <!-- �-�-�-�-�-�- PROJECT CAROUSEL �-�-�-�-�-�- -->
   <!-- �-�-�-�-�-�- PROJECT CAROUSEL �-�-�-�-�-�- -->
-  <section id="section-carousel" style="padding:0;background:#ffffff;overflow:hidden;position:relative;">
+  <section id="section-carousel" class="car-section">
 
-    <!-- Header bar --- white bg, dark text, no border separator -->
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:48px 80px 32px 160px;">
-      <div style="display:flex;align-items:center;gap:24px;">
-        <span
-          style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:rgba(0,0,0,0.35);">Selected
-          Work</span>
-        <span style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.2em;color:rgba(0,0,0,0.18);">3,500+
-          Projects</span>
+    <!-- Header bar -->
+    <div class="car-header">
+      <div class="car-header-left">
+        <span class="car-eyebrow">Selected Work</span>
+        <span class="car-meta">3,500+ Projects</span>
       </div>
-      <div style="display:flex;gap:8px;">
-        <button id="car-prev"
-          style="width:44px;height:44px;background:transparent;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:monospace;"
-          onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
-          onmouseleave="this.style.borderColor='rgba(0,0,0,0.15)';this.style.color='rgba(0,0,0,0.5)'">---</button>
-        <button id="car-next"
-          style="width:44px;height:44px;background:transparent;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:monospace;"
-          onmouseenter="this.style.borderColor='#000';this.style.color='#000'"
-          onmouseleave="this.style.borderColor='rgba(0,0,0,0.15)';this.style.color='rgba(0,0,0,0.5)'">---</button>
+      <div class="arrow-pair">
+        <button id="car-prev" class="arrow-btn" aria-label="Previous">&larr;</button>
+        <button id="car-next" class="arrow-btn" aria-label="Next">&rarr;</button>
       </div>
     </div>
 
-    <!-- Track wrapper --- left-padded, overflows right edge intentionally -->
-    <div style="overflow:hidden;padding:0 0 52px 160px;position:relative;">
-      <div id="car-track" style="display:flex;gap:28px;will-change:transform;transition:none;">
+    <!-- Track wrapper -->
+    <div class="car-track-wrap">
+      <div id="car-track" class="car-track">
 
         <!-- Card 01 --- Shoe Guru -->
         <div class="car-card  car-card-first" data-idx="0" onclick="showPage('proj-shoe-guru')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Shoe-Guru-3-uai-1200x800.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Shoe Guru">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -196,13 +176,11 @@
         </div>
         <!-- Card 02 --- Rockhard -->
         <div class="car-card" data-idx="1" onclick="showPage('proj-rockhard')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2025/11/1-1-uai-810x1080.png" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Rockhard">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -214,13 +192,11 @@
         </div>
         <!-- Card 03 --- Visions Enterprises -->
         <div class="car-card" data-idx="2" onclick="showPage('proj-visions')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Visions-1-uai-600x800.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Visions Enterprises">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -234,13 +210,11 @@
         </div>
         <!-- Card 04 --- Adam Trent -->
         <div class="car-card" data-idx="3" onclick="showPage('proj-adam-trent')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Adam-Trent-1-uai-678x904.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Adam Trent">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -253,13 +227,11 @@
         </div>
         <!-- Card 05 --- Metegrity -->
         <div class="car-card" data-idx="4" onclick="showPage('proj-metegrity')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/02/Aqomi-Metegrity-4-uai-639x852.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Metegrity">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -272,13 +244,11 @@
         </div>
         <!-- Card 06 --- NorthBay -->
         <div class="car-card" data-idx="5" onclick="showPage('proj-northbay')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2025/11/North-Bay-uai-1080x1440.png" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="NorthBay">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -291,13 +261,11 @@
         </div>
         <!-- Card 07 --- Akogare -->
         <div class="car-card" data-idx="6" onclick="showPage('proj-akogare')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/02/akogare-uai-1080x1440.png" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Akogare">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -309,13 +277,11 @@
         </div>
         <!-- Card 08 --- Pansawan -->
         <div class="car-card" data-idx="7" onclick="showPage('proj-pansawan')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Pansawan-3-uai-1125x750.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Pansawan">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -328,13 +294,11 @@
         </div>
         <!-- Card 09 --- Litter-Robot -->
         <div class="car-card" data-idx="8" onclick="showPage('proj-litter-robot')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Litter-Robot-3-uai-506x675.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Litter-Robot">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -347,14 +311,12 @@
         </div>
         <!-- Card 10 --- Jerry Sargeant -->
         <div class="car-card" data-idx="9" onclick="showPage('proj-jerry-sargeant')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Jerry-Sargeant-1-uai-1012x675.webp"
             loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Jerry Sargeant">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -367,13 +329,11 @@
         </div>
         <!-- Card 11 --- Penta Hospitals -->
         <div class="car-card" data-idx="10" onclick="showPage('proj-penta')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Penta-3-uai-506x675.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Penta Hospitals">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -386,13 +346,11 @@
         </div>
         <!-- Card 12 --- Art of Magic -->
         <div class="car-card" data-idx="11" onclick="showPage('proj-art-of-magic')"
-          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#e8e8e8;flex-shrink:0;">
+          style="flex:0 0 calc(22% - 15px);aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--coal);flex-shrink:0;">
           <img src="https://aqomi.com/wp-content/uploads/2024/01/Aqomi-Art-Of-Magic-3-uai-553x738.webp" loading="lazy"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.1,.25,1);"
             alt="Art of Magic">
-          <div class="car-dim"
-            style="position:absolute;inset:0;background:rgba(255,255,255,0.52);transition:opacity .4s;pointer-events:none;z-index:1;">
-          </div>
+          <div class="car-dim"></div>
           <div class="car-overlay"
             style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;z-index:2;">
             <span
@@ -407,24 +365,17 @@
       </div><!-- /track -->
     </div>
 
-    <!-- Progress bar + counter --- left-aligned with left padding -->
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:0 80px 20px 160px;">
-      <div style="flex:1;height:1px;background:rgba(0,0,0,0.08);position:relative;margin-right:32px;">
-        <div id="car-progress"
-          style="position:absolute;top:0;left:0;height:1px;background:#000;width:33.3%;transition:width .9s cubic-bezier(.77,0,.18,1);">
-        </div>
+    <!-- Progress bar + counter -->
+    <div class="car-progress-wrap">
+      <div class="car-progress-track">
+        <div id="car-progress" class="car-progress-fill"></div>
       </div>
-      <span id="car-counter"
-        style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.22em;color:rgba(0,0,0,0.3);white-space:nowrap;">01
-        / 12</span>
+      <span id="car-counter" class="car-counter">01 / 12</span>
     </div>
 
     <!-- View All -->
-    <div style="padding:0 80px 56px 160px;">
-      <a href="#" onclick="showPage('work')"
-        style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:rgba(0,0,0,0.3);text-decoration:none;display:inline-flex;align-items:center;gap:12px;transition:color .2s;"
-        onmouseenter="this.style.color='#000'" onmouseleave="this.style.color='rgba(0,0,0,0.3)'">View All Projects <span
-          style="font-size:14px;">---</span></a>
+    <div class="car-view-all">
+      <a href="#" onclick="showPage('work')" class="car-view-all-link">View All Projects <span>&rarr;</span></a>
     </div>
 
     <!-- Styles -->
@@ -439,8 +390,95 @@
 
 
 
-  <!-- �-�-�-�-�-�- PROPRIETARY PROCESS FLOWCHART --- Dieter Rams style �-�-�-�-�-�- -->
+  <!-- ────────── VIDEO BAND 01 ────────── -->
+  <section class="video-band" data-video="band01">
+    <div class="video-band__content">
+      <span class="video-band__kicker">The AQOMI Standard</span>
+      <h2 class="video-band__title">Brands the world<br><em>can't ignore.</em></h2>
+    </div>
+  </section>
 
+  <!-- ────────── FEATURED CASE STUDIES ────────── -->
+  <section class="featured-cases">
+    <div class="featured-cases__head">
+      <div>
+        <span class="featured-cases__eyebrow">02 — Featured Case Studies</span>
+        <h2 class="featured-cases__h2">Recent work,<br><em>up close.</em></h2>
+      </div>
+      <p class="featured-cases__intro">Three of our latest brand identity systems — built from strategy through launch.</p>
+    </div>
+
+    <!-- CASE 01 — TCS Edmonton -->
+    <article class="case-block reveal">
+      <div class="case-block__body">
+        <span class="case-block__num">01</span>
+        <span class="case-block__kicker">Branding · Web · Permitting</span>
+        <h3 class="case-block__title">TCS Edmonton.<br><em>Permits, end to end.</em></h3>
+        <p>Edmonton's premier permit-and-approvals consultancy needed a brand and digital presence that matched their 15-year track record — 500+ permits approved, 98% approval rate.</p>
+        <p>We built a confident, no-nonsense identity and site that converts homeowners, restaurateurs and developers from the first scroll, with municipal authority encoded into every word.</p>
+        <div class="case-block__meta">
+          <span class="case-block__chip">Brand Identity</span>
+          <span class="case-block__chip">Website</span>
+          <span class="case-block__chip">Copywriting</span>
+        </div>
+        <a href="https://tcs-hazel.vercel.app/" target="_blank" rel="noopener" class="case-block__cta">Visit Live Site</a>
+      </div>
+      <div class="case-block__media" data-video="caseTcs">
+        <img src="/videos/case-tcs-poster.jpg" loading="lazy" alt="TCS Edmonton">
+        <div class="case-block__media-overlay"></div>
+      </div>
+    </article>
+
+    <!-- CASE 02 — TARAXA -->
+    <article class="case-block reveal">
+      <div class="case-block__body">
+        <span class="case-block__num">02</span>
+        <span class="case-block__kicker">Branding · Industrial · Web</span>
+        <h3 class="case-block__title">Taraxa.<br><em>Engineered to ship worldwide.</em></h3>
+        <p>The engineering arm of GUMEX Poland — precision rubber components serving automotive, rail and energy across 40+ countries — needed a brand language as rigorous as its tooling.</p>
+        <p>We translated 800-tonne press capacity, ISO 9001 discipline and seven base polymers into a quietly authoritative identity. Engineer-to-client clarity, no sales fluff.</p>
+        <div class="case-block__meta">
+          <span class="case-block__chip">Industrial Brand</span>
+          <span class="case-block__chip">Website</span>
+          <span class="case-block__chip">Technical Copy</span>
+        </div>
+        <a href="https://taraxa-kappa.vercel.app/" target="_blank" rel="noopener" class="case-block__cta">Visit Live Site</a>
+      </div>
+      <div class="case-block__media" data-video="caseTaraxa">
+        <img src="/videos/case-taraxa-poster.jpg" loading="lazy" alt="Taraxa">
+        <div class="case-block__media-overlay"></div>
+      </div>
+    </article>
+
+    <!-- CASE 03 — XYVON -->
+    <article class="case-block reveal">
+      <div class="case-block__body">
+        <span class="case-block__num">03</span>
+        <span class="case-block__kicker">Branding · Wellness · E-Commerce</span>
+        <h3 class="case-block__title">Xyvon.<br><em>The mg is the marketing.</em></h3>
+        <p>A founder-led, science-first electrolyte brand engineered around biology — cycle phases, training windows, recovery — refused to play the wellness aesthetic game. They wanted transparency over fluff.</p>
+        <p>We built a brand and digital storefront where every claim is graded, every milligram is on the pack, and the science does the convincing.</p>
+        <div class="case-block__meta">
+          <span class="case-block__chip">Brand Identity</span>
+          <span class="case-block__chip">E-Commerce</span>
+          <span class="case-block__chip">Packaging</span>
+        </div>
+        <a href="https://xyvon.vercel.app/" target="_blank" rel="noopener" class="case-block__cta">Visit Live Site</a>
+      </div>
+      <div class="case-block__media" data-video="caseXyvon">
+        <img src="/videos/case-xyvon-poster.jpg" loading="lazy" alt="Xyvon">
+        <div class="case-block__media-overlay"></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ────────── VIDEO BAND 02 ────────── -->
+  <section class="video-band" data-video="band02">
+    <div class="video-band__content">
+      <span class="video-band__kicker">18 Years · 40 Countries</span>
+      <h2 class="video-band__title">Strategy, design,<br><em>built end to end.</em></h2>
+    </div>
+  </section>
 
   <!-- LORE -->
   <section id="section-lore">
@@ -495,43 +533,34 @@
   </section>
 
   <!-- SERVICES TEASER -->
-  <div class="services-teaser" style="background:#ffffff;padding:80px;">
+  <div class="services-teaser">
     <span class="section-tag">Services</span>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+    <div class="services-teaser-head">
       <h2 class="section-h2 reveal">Three ways to work<br><em>with the studio</em></h2>
-      <a href="#" class="btn-forge" onclick="showPage('services')" style="font-size:10px;padding:12px 24px;">View All
-        Services &rarr;</a>
+      <a href="#" class="btn-forge" onclick="showPage('services')" style="font-size:10px;padding:12px 24px;">View All Services &rarr;</a>
     </div>
     <div class="tier-grid">
       <div class="tier-card reveal">
-        <span class="tier-num">Day Rate</span>
+        <span class="tier-num">Tier 01</span>
         <div class="tier-name">Day Rate</div>
-        <div class="tier-price"><em style="font-style:italic;">$2,500</em> <small>per day</small></div>
-        <p class="tier-desc">A focused day of AQOMI creative capacity &mdash; yours to direct. Discovery, strategy,
-          design, consulting, creative direction, and more. You set the agenda. We deliver.</p>
-        <a href="#" class="tier-link" onclick="showPage('services')"
-          style="font-variant:small-caps;letter-spacing:.15em;">Explore &rarr;</a>
+        <div class="tier-price"><em>$2,500</em> <small>per day</small></div>
+        <p class="tier-desc">A focused day of AQOMI creative capacity &mdash; yours to direct. Discovery, strategy, design, consulting, creative direction, and more. You set the agenda. We deliver.</p>
+        <a href="#" class="tier-link" onclick="showPage('services')">Explore &rarr;</a>
       </div>
-      <div class="tier-card featured reveal d1"
-        style="background:#0d0d0d;border-color:rgba(255,255,255,0.08);border-top:2px solid #c8f026;color:#fff;">
-        <div class="tier-badge" style="background:#c8f026;color:#000;">Most Popular</div>
-        <span class="tier-num" style="color:#c8f026;">Tier 02</span>
-        <div class="tier-name" style="color:#fff;">Studio Retainer</div>
-        <div class="tier-price" style="color:#fff;"><em style="font-style:italic;">$5,000</em> <small
-            style="color:rgba(255,255,255,0.4);">per month</small></div>
-        <p class="tier-desc" style="color:rgba(255,255,255,0.4);">Your dedicated creative partner on a monthly basis.
-          Priority access, unlimited design output, strategic check-ins. Minimum 3 months.</p>
-        <a href="#" class="tier-link" onclick="showPage('services')"
-          style="color:#c8f026;font-variant:small-caps;letter-spacing:.15em;">Explore &rarr;</a>
+      <div class="tier-card featured reveal d1">
+        <div class="tier-badge">Most Popular</div>
+        <span class="tier-num">Tier 02</span>
+        <div class="tier-name">Studio Retainer</div>
+        <div class="tier-price"><em>$5,000</em> <small>per month</small></div>
+        <p class="tier-desc">Your dedicated creative partner on a monthly basis. Priority access, unlimited design output, strategic check-ins. Minimum 3 months.</p>
+        <a href="#" class="tier-link" onclick="showPage('services')">Explore &rarr;</a>
       </div>
       <div class="tier-card reveal d2">
         <span class="tier-num">Tier 03</span>
         <div class="tier-name">Full Production Build</div>
-        <div class="tier-price"><em style="font-style:italic;">$25,000</em> <small>starting from</small></div>
-        <p class="tier-desc">Brand. Product. Campaign. Built end-to-end. Strategy, identity, development, marketing,
-          photography, video, and launch &mdash; handled in full.</p>
-        <a href="#" class="tier-link" onclick="showPage('services')"
-          style="font-variant:small-caps;letter-spacing:.15em;">Explore &rarr;</a>
+        <div class="tier-price"><em>$25,000</em> <small>starting from</small></div>
+        <p class="tier-desc">Brand. Product. Campaign. Built end-to-end. Strategy, identity, development, marketing, photography, video, and launch &mdash; handled in full.</p>
+        <a href="#" class="tier-link" onclick="showPage('services')">Explore &rarr;</a>
       </div>
     </div>
   </div>
@@ -647,10 +676,7 @@
             </div>
             <div class="t-verified">Verified</div>
           </div>
-          <div style="text-align:center;margin-top:14px;"><a href="https://clutch.co/profile/aqomi-studios"
-              target="_blank"
-              style="font-family:var(--ff-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--forge);text-decoration:none;border:1px solid rgba(0,0,0,0.21);padding:7px 14px;">All
-              26 Reviews ---</a></div>
+          <div style="text-align:center;margin-top:14px;"><a href="https://clutch.co/profile/aqomi-studios" target="_blank" class="t-all-reviews">All 26 Reviews &rarr;</a></div>
         </div>
       </div>
     </div>
@@ -660,8 +686,25 @@
     </div>
   </section>
 
+  <!-- OUTRO MONUMENT -->
+  <section class="outro-monument">
+    <div class="bg-aurora"></div>
+    <span class="outro-monument__sub">Where ambition becomes brand</span>
+    <h2 class="outro-monument__word outro-monument__word--svg" aria-label="AQOMI">
+      <svg class="outro-aqomi" viewBox="0 0 1000 260" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true">
+        <text x="100"  y="210" class="outro-aqomi__letter">A</text>
+        <text x="300"  y="210" class="outro-aqomi__letter">Q</text>
+        <text x="500"  y="210" class="outro-aqomi__letter">O</text>
+        <text x="700"  y="210" class="outro-aqomi__letter">M</text>
+        <text x="900"  y="210" class="outro-aqomi__letter">I</text>
+      </svg>
+    </h2>
+    <span class="outro-monument__sub" style="margin-top:24px;">Ready to build something the world can't ignore?</span>
+    <a href="#" onclick="showPage('book')" class="btn-forge outro-monument__cta halo-accent">Book a Call &rarr;</a>
+  </section>
+
   <!-- FOOTER -->
-  <footer style="background:#f7f7f5;color:#000;">
+  <footer>
     <div class="footer-grid">
       <div>
         <div class="footer-brand">AQOMI <em>Studios</em></div>

@@ -7,6 +7,8 @@
 import '../css/tokens.css';
 import '../css/cursor.css';
 import '../css/layout.css';
+import '../css/backgrounds.css';
+import '../css/video-bg.css';
 import '../css/hero.css';
 import '../css/components.css';
 import '../css/pages.css';
@@ -15,11 +17,12 @@ import '../css/jobs.css';
 import '../css/voice-assistant.css';
 import '../css/animations.css';
 import '../css/responsive.css';
+import '../css/lead-gen.css';
 
 // ── JS Module Imports ────────────────────────────
 import { loadAllPages } from './pageLoader.js';
 import { initCursor } from './cursor.js';
-import { showPage, initNavScroll, initLinkPrevention, initMobileNav, initPopState, getInitialPageId } from './router.js';
+import { showPage, initNavScroll, initLinkPrevention, initMobileNav, initPopState, getInitialPageId, onPageActivate } from './router.js';
 import { initReveals, triggerReveals } from './reveals.js';
 import { initEmbers } from './embers.js';
 import { initCarousel } from './carousel.js';
@@ -30,9 +33,19 @@ import { initFlowchart } from './flowchart.js';
 import { initDotGrid } from './dotGrid.js';
 import { initRoadmap } from './roadmap.js';
 import { initVoiceAssistant } from './voiceAssistant.js';
+import { initVideoBackgrounds } from './videoBackground.js';
+import { initAqomiOutro } from './aqomiOutro.js';
+import { initCaseModal } from './caseModal.js';
+import { initStatCounter } from './statCounter.js';
 
 // ── Expose showPage globally (used by onclick handlers in HTML) ──
 window.showPage = showPage;
+
+// FAQ accordion (used by onclick="toggleFaq(this)" in services.html)
+window.toggleFaq = function (btn) {
+  const item = btn.closest('.faq-item');
+  if (item) item.classList.toggle('open');
+};
 
 // ── Initialize everything on DOM ready ───────────
 document.addEventListener('DOMContentLoaded', async () => {
@@ -111,6 +124,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   // WebGL
   initMeshGradients();
 
+  // Video backgrounds (lazy mount via IntersectionObserver)
+  initVideoBackgrounds();
+
+  // AQOMI outro draw-on + glow
+  initAqomiOutro();
+
+  // Case study video modal
+  initCaseModal();
+
+  // Stat counter (count-up on viewport)
+  initStatCounter();
+
   // Process page
   initFlowchart();
   initDotGrid();
@@ -124,4 +149,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Trigger initial reveals after a brief delay
   setTimeout(triggerReveals, 400);
+
+  // Re-bind viewport-dependent modules to anything mounted by lazy pages
+  // (LAZY_PAGES are inserted ~2s after init in pageLoader.js).
+  // All these inits are idempotent — they skip elements already bound.
+  function rebindLazyModules() {
+    initVideoBackgrounds();
+    initAqomiOutro();
+    initCaseModal();
+    initStatCounter();
+  }
+  setTimeout(rebindLazyModules, 2500);
+
+  // And again whenever the user navigates to a page (covers manual nav clicks)
+  onPageActivate(rebindLazyModules);
 });

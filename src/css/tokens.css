@@ -1,21 +1,36 @@
 /* ══════════════════════════════════
-   DESIGN TOKENS & RESET
+   DESIGN TOKENS & RESET — Dark Edition
+   Palette inverted from light → dark.
+   --accent (apple green) is now a first-class token.
+   Variable names preserved so existing CSS keeps working.
    ══════════════════════════════════ */
 
 :root {
-  /* Dieter Rams palette: white ground, black type, one grey */
-  --ink:    #ffffff;
-  --ash:    #f4f4f4;
-  --coal:   #e8e8e8;
-  --ember:  #d0d0d0;
-  --forge:  #000000;
-  --molten: #222222;
-  --spark:  #666666;
-  --iron:   rgba(0, 0, 0, 0.08);
-  --soot:   rgba(255, 255, 255, 0.85);
-  --fg:     #000000;
-  --dim:    rgba(0, 0, 0, 0.45);
-  --rule:   rgba(0, 0, 0, 0.10);
+  /* Surfaces (formerly white) */
+  --ink:    #0a0a0a;   /* page background */
+  --ash:    #111111;   /* elevated surface */
+  --coal:   #1a1a1a;   /* card / band */
+  --ember:  #262626;   /* hover surface */
+
+  /* Foreground (formerly black) */
+  --forge:  #ffffff;   /* primary text */
+  --molten: #e8e8e8;   /* hover text */
+  --spark:  #888888;   /* muted */
+
+  /* Lines / glass */
+  --iron:   rgba(255, 255, 255, 0.06);
+  --soot:   rgba(0, 0, 0, 0.85);
+
+  /* Aliases */
+  --fg:     #ffffff;
+  --dim:    rgba(255, 255, 255, 0.55);
+  --rule:   rgba(255, 255, 255, 0.10);
+
+  /* Brand accent — apple green */
+  --accent:        #c8f026;
+  --accent-soft:   #b8e020;
+  --accent-glow:   rgba(200, 240, 38, 0.35);
+  --accent-dim:    rgba(200, 240, 38, 0.15);
 
   /* Typography */
   --ff-display: 'Instrument Sans', sans-serif;
@@ -35,6 +50,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--ink);
 }
 
 body {
@@ -44,4 +60,9 @@ body {
   font-weight: 300;
   cursor: auto;
   overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
 }

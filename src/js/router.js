@@ -17,6 +17,7 @@ const ROUTE_MAP = {
   careers: 'careers',
   book: 'book',
   start: 'start',
+  'ai-leadgen': 'ai-lead-generation',
 };
 
 // Project pages: proj-shoe-guru -> work/shoe-guru
@@ -159,36 +160,62 @@ export function getInitialPageId() {
 /**
  * Nav background on scroll — transparent on hero, blur on other pages
  */
-const DARK_PAGES = ['work'];
+/**
+ * Nav scroll behavior:
+ *   .is-scrolled  → scrollY > 20 (CSS turns on blur background + border)
+ *   .is-hidden    → scrolling DOWN past 80px (auto-hide)
+ *                   removed when scrolling UP or returning near top
+ */
+const SCROLL_HIDE_THRESHOLD = 80;
+const SCROLL_DELTA          = 6;
+const SCROLL_TOP_GUARD      = 20;
 
-function applyNavTheme() {
+let lastScrollY = 0;
+let scrollTicking = false;
+
+function applyNavScroll() {
   const nav = document.querySelector('nav');
-  if (!nav) return;
+  if (!nav) { scrollTicking = false; return; }
 
-  const onHome = document.getElementById('page-home')?.classList.contains('active');
-  const onDark = DARK_PAGES.some((p) => document.getElementById('page-' + p)?.classList.contains('active'));
+  const announce = document.querySelector('.lg-announce');
+  const y = Math.max(0, window.scrollY);
+  const delta = y - lastScrollY;
 
-  if (onHome) {
-    nav.style.background = 'transparent';
-    nav.style.backdropFilter = 'none';
-    nav.style.borderBottom = 'none';
-    nav.classList.remove('nav-dark');
-  } else if (onDark) {
-    nav.classList.add('nav-dark');
-    nav.style.background = window.scrollY > 20 ? 'rgba(0,0,0,0.92)' : 'transparent';
-    nav.style.backdropFilter = window.scrollY > 20 ? 'blur(12px)' : 'none';
-    nav.style.borderBottom = window.scrollY > 20 ? '1px solid rgba(255,255,255,0.08)' : 'none';
-  } else {
-    nav.classList.remove('nav-dark');
-    nav.style.background = window.scrollY > 20 ? 'rgba(255,255,255,0.96)' : 'transparent';
-    nav.style.backdropFilter = window.scrollY > 20 ? 'blur(12px)' : 'none';
-    nav.style.borderBottom = window.scrollY > 20 ? '1px solid rgba(0,0,0,0.08)' : 'none';
+  if (y > SCROLL_TOP_GUARD) nav.classList.add('is-scrolled');
+  else nav.classList.remove('is-scrolled');
+
+  if (y > SCROLL_HIDE_THRESHOLD && delta > SCROLL_DELTA) {
+    nav.classList.add('is-hidden');
+  } else if (delta < -SCROLL_DELTA || y <= SCROLL_TOP_GUARD) {
+    nav.classList.remove('is-hidden');
   }
+
+  // Announce bar (only on AI Lead Gen page) follows the nav
+  if (announce) {
+    announce.classList.toggle('is-hidden', nav.classList.contains('is-hidden'));
+  }
+
+  lastScrollY = y;
+  scrollTicking = false;
+}
+
+function onScroll() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(applyNavScroll);
 }
 
 export function initNavScroll() {
-  window.addEventListener('scroll', applyNavTheme, { passive: true });
-  onPageActivate(() => { applyNavTheme(); setTimeout(applyNavTheme, 50); });
+  lastScrollY = window.scrollY;
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onPageActivate(() => {
+    const nav = document.querySelector('nav');
+    const announce = document.querySelector('.lg-announce');
+    if (nav) nav.classList.remove('is-hidden');
+    if (announce) announce.classList.remove('is-hidden');
+    lastScrollY = window.scrollY;
+    applyNavScroll();
+  });
 }
 
 export function initLinkPrevention() {

@@ -1,0 +1,182 @@
+/* ══════════════════════════════════
+   VIDEO BACKGROUND LAYER
+   Used by videoBackground.js.
+   The <section> (or wrapper) needs:
+     position: relative; overflow: hidden;
+   plus attribute   data-video="hero"   (key into the manifest).
+   ══════════════════════════════════ */
+
+.video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--ink);
+}
+
+.video-bg video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: opacity;
+}
+
+.video-bg video.is-ready {
+  opacity: 1;
+}
+
+/* Poster fallback (always rendered, hidden once video plays) */
+.video-bg__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink);
+  opacity: 1;
+  transition: opacity 1.4s ease;
+}
+
+.video-bg.is-playing .video-bg__poster {
+  opacity: 0;
+}
+
+/* Legibility scrim — sits between video and content */
+.video-bg__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.35) 0%,
+    rgba(10, 10, 10, 0.55) 50%,
+    rgba(10, 10, 10, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+/* Side vignette to keep edges deep */
+.video-bg__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Optional accent tint variant — subtle green wash */
+.video-bg.tint-accent::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* When user prefers reduced motion → only show poster */
+@media (prefers-reduced-motion: reduce) {
+  .video-bg video { display: none; }
+}
+
+/* Black & white filter — applied to hero videos only.
+   Posters get the same treatment so the transition stays consistent. */
+.hero .video-bg video,
+.hero .video-bg__poster,
+.lg-hero .video-bg video,
+.lg-hero .video-bg__poster {
+  filter: grayscale(100%) contrast(1.06);
+}
+
+/* ══════════════════════════════════
+   VIDEO BAND
+   Full-width, fixed-height (500px) video strip used as
+   an atmospheric divider between content sections.
+   The host element gets data-video="<key>" + class video-band.
+   Inner content (title, kicker, CTA) is optional.
+   ══════════════════════════════════ */
+
+.video-band {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ink);
+}
+
+.video-band__content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+  pointer-events: none;
+}
+
+.video-band__content > * {
+  pointer-events: auto;
+}
+
+.video-band__kicker {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  display: block;
+}
+
+.video-band__title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--forge);
+  max-width: 1000px;
+  margin: 0;
+}
+
+.video-band__title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.video-band__sub {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 560px;
+  margin: 24px auto 0;
+}
+
+.video-band__cta {
+  margin-top: 32px;
+}
+
+/* Variant: shorter band (350px) for transitions */
+.video-band--short { height: 350px; }
+.video-band--tall  { height: 640px; }
+
+@media (max-width: 768px) {
+  .video-band { height: 360px; }
+  .video-band--short { height: 240px; }
+  .video-band--tall  { height: 460px; }
+  .video-band__title { font-size: clamp(36px, 11vw, 64px); }
+}

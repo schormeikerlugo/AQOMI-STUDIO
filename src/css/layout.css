@@ -38,7 +38,35 @@ nav {
   height: 68px;
   background: transparent;
   backdrop-filter: none;
-  border-bottom: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transform: translateY(0);
+  will-change: transform, background-color;
+  transition:
+    background-color 0.35s ease,
+    backdrop-filter 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Scrolled past hero — blur + subtle dark fill */
+nav.is-scrolled {
+  background-color: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom-color: var(--rule);
+}
+
+/* Auto-hide when scrolling down */
+nav.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* Reduced motion: don't slide the nav, just snap it */
+@media (prefers-reduced-motion: reduce) {
+  nav { transition: background-color 0.2s ease, border-color 0.2s ease; }
+  nav.is-hidden { transform: none; }
 }
 
 .nav-logo {
@@ -83,13 +111,13 @@ nav {
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--forge);
+  background: var(--accent);
   transition: width 0.25s;
 }
 
 .nav-link:hover,
 .nav-link.active-page {
-  color: var(--forge);
+  color: var(--accent);
 }
 
 .nav-link:hover::after,
@@ -97,15 +125,15 @@ nav {
   width: 100%;
 }
 
-/* Nav dark mode (for dark pages like Work) */
-nav.nav-dark .nav-logo { color: #fff; }
-nav.nav-dark .nav-logo-accent { color: rgba(255,255,255,0.6); }
-nav.nav-dark .nav-link { color: rgba(255,255,255,0.5); }
+/* Nav dark mode kept for legacy class — same as default in dark theme */
+nav.nav-dark .nav-logo { color: var(--forge); }
+nav.nav-dark .nav-logo-accent { color: var(--dim); }
+nav.nav-dark .nav-link { color: var(--dim); }
 nav.nav-dark .nav-link:hover,
-nav.nav-dark .nav-link.active-page { color: #fff; }
-nav.nav-dark .nav-link::after { background: #fff; }
-nav.nav-dark .nav-cta { background: #c8f026; color: #000; }
-nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
+nav.nav-dark .nav-link.active-page { color: var(--accent); }
+nav.nav-dark .nav-link::after { background: var(--accent); }
+nav.nav-dark .nav-cta { background: var(--accent); color: #000; }
+nav.nav-dark .nav-cta:hover { background: var(--accent-soft); color: #000; }
 
 .nav-cta {
   font-family: var(--ff-mono);
@@ -113,18 +141,18 @@ nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 10px 24px;
-  background: var(--forge);
-  color: var(--ink);
+  background: var(--accent);
+  color: #000;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
   transition: background 0.2s, transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.25s;
 }
 
 .nav-cta:hover {
-  background: var(--molten);
-  color: #c8f026;
+  background: var(--accent-soft);
+  color: #000;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px var(--accent-dim), 0 0 18px var(--accent-glow);
 }
 
 .nav-cta:active {
@@ -146,7 +174,7 @@ nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
   font-size: 9px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--forge);
+  color: var(--accent);
   display: block;
   margin-bottom: 16px;
 }
@@ -162,7 +190,7 @@ nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
 
 .section-h2 em {
   font-style: italic;
-  color: var(--spark);
+  color: var(--accent);
 }
 
 /* ══════════════════════════════════
@@ -171,6 +199,7 @@ nav.nav-dark .nav-cta:hover { background: #b8e020; color: #000; }
 
 footer {
   background: var(--ash);
+  color: var(--forge);
   border-top: 1px solid var(--rule);
   padding: 72px 80px 40px;
 }
@@ -192,7 +221,7 @@ footer {
 
 .footer-brand em {
   font-style: italic;
-  color: var(--forge);
+  color: var(--accent);
 }
 
 .footer-tagline {
@@ -208,7 +237,7 @@ footer {
   font-size: 9px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--forge);
+  color: var(--accent);
   margin-bottom: 18px;
 }
 
@@ -229,7 +258,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: var(--fg);
+  color: var(--accent);
 }
 
 .footer-bottom {
@@ -245,6 +274,6 @@ footer {
 }
 
 .footer-bottom a {
-  color: var(--forge);
+  color: var(--accent);
   text-decoration: none;
 }
