@@ -4,7 +4,8 @@
    Reuses tokens (--ink, --forge, --accent, --rule, --dim).
    ══════════════════════════════════ */
 
-#page-ai-leadgen {
+#page-ai-leadgen,
+#page-landing-pages {
   background: var(--ink);
   color: var(--forge);
   /* Reserve space for the fixed announce bar that sits below the fixed nav */

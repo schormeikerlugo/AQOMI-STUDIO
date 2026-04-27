@@ -53,6 +53,24 @@ export const MANIFEST = {
     poster: '/videos/hero2-poster.jpg',
     pingpong: true,
   },
+  // Landing Pages page
+  heroLandingPages: {
+    mp4:    '/videos/hero3.mp4',
+    webm:   '/videos/hero3.webm',
+    poster: '/videos/hero3-poster.jpg',
+    pingpong: true,
+  },
+  // Showcase videos for landing pages page (placeholders):
+  showcaseReel: {
+    mp4:    '/videos/showcase-reel.mp4',
+    webm:   '/videos/showcase-reel.webm',
+    poster: '/videos/showcase-reel-poster.jpg',
+  },
+  showcaseCraft: {
+    mp4:    '/videos/showcase-craft.mp4',
+    webm:   '/videos/showcase-craft.webm',
+    poster: '/videos/showcase-craft-poster.jpg',
+  },
   // Showcase videos for the lead gen page (placeholders — generate later):
   leadgenDashboard: {
     mp4:    '/videos/leadgen-dashboard.mp4',

@@ -13,7 +13,7 @@ const EAGER_PAGES = ['home'];
 // All other pages — loaded on demand
 const LAZY_PAGES = [
   'work', 'services', 'studio', 'careers',
-  'industries', 'start', 'book', 'why', 'ai-leadgen',
+  'industries', 'start', 'book', 'why', 'ai-leadgen', 'landing-pages',
   'proj-rockhard', 'proj-aithr', 'proj-news930', 'proj-northbay',
   'proj-metegrity', 'proj-akogare', 'proj-spirit-halloween',
   'proj-china-southern', 'proj-weexchange', 'proj-three-streams',
