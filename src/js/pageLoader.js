@@ -56,6 +56,8 @@ function activateScripts(el) {
 async function insertPage(container, name) {
   if (loadedPages.has(name)) return;
   loadedPages.add(name);
+  // If the prerendered HTML already includes this page, skip the fetch+insert
+  if (document.getElementById('page-' + name)) return;
   const html = await fetchHTML(`/partials/pages/${name}.html`);
   const wrapper = document.createElement('div');
   wrapper.innerHTML = html;
@@ -86,22 +88,24 @@ export async function loadAllPages() {
     Promise.all(eagerPromises),
   ]);
 
-  // Insert nav
+  // Insert nav — skip if one is already in the DOM (e.g. from prerendered HTML in prod)
   const navComp = components.find(c => c.path.includes('nav.html'));
-  if (navComp) {
+  if (navComp && !document.querySelector('nav')) {
     const wipe = document.getElementById('page-wipe');
     wipe.insertAdjacentHTML('afterend', navComp.html);
   }
 
-  // Insert eager pages
+  // Insert eager pages — skip if already present (prerendered HTML)
   for (const { name, html } of eagerPages) {
     loadedPages.add(name);
-    container.insertAdjacentHTML('beforeend', html);
+    if (!document.getElementById('page-' + name)) {
+      container.insertAdjacentHTML('beforeend', html);
+    }
   }
 
-  // Insert voice assistant
+  // Insert voice assistant — skip if already present
   const vaComp = components.find(c => c.path.includes('voice-assistant'));
-  if (vaComp) {
+  if (vaComp && !document.getElementById('va-wrap')) {
     document.body.insertAdjacentHTML('beforeend', vaComp.html);
   }
 
