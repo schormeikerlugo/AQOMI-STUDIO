@@ -11,6 +11,13 @@
   display: block;
 }
 
+/* While the wipe is covering the viewport, freeze the scroll so the user
+   never sees the new page render at the old scroll offset. */
+html.is-page-transitioning,
+html.is-page-transitioning body {
+  overflow: hidden;
+}
+
 #page-wipe {
   position: fixed;
   inset: 0;

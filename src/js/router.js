@@ -6,6 +6,19 @@ import { ensurePageLoaded } from './pageLoader.js';
 
 const wipe = document.getElementById('page-wipe');
 
+// Disable browser's automatic scroll restoration so we control it ourselves.
+// Without this, navigating back/forward (or even some same-page navigations)
+// can land the user mid-page after we've reset to top.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
 // ── Route mapping: pageId <-> URL slug ──
 const ROUTE_MAP = {
   home: '',
@@ -59,6 +72,10 @@ export async function showPage(id, pushHistory = true) {
   if (!wipe) return;
   if (id === currentPageId) return;
 
+  // 1. Lock scroll while the wipe covers the screen so the user
+  //    never sees the new page render at the previous offset.
+  document.documentElement.classList.add('is-page-transitioning');
+
   wipe.style.transition = 'transform .32s cubic-bezier(.86,0,.07,1)';
   wipe.style.transformOrigin = 'left';
   wipe.style.transform = 'scaleX(1)';
@@ -73,9 +90,9 @@ export async function showPage(id, pushHistory = true) {
     const pg = document.getElementById('page-' + id);
     if (pg) {
       pg.classList.add('active');
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
+      // 2. Reset scroll BEFORE the wipe lifts. Multiple targets cover all
+      //    browsers + edge cases (overflow on body vs html).
+      scrollToTop();
     }
 
     currentPageId = id;
@@ -92,6 +109,14 @@ export async function showPage(id, pushHistory = true) {
     updateNav(id);
 
     _activations.forEach((fn) => fn(id));
+
+    // 3. Run scrollToTop again on the next frame — covers any layout shift
+    //    or late style application that could push the page.
+    requestAnimationFrame(() => {
+      scrollToTop();
+      // Unlock scroll once the new page is in place
+      document.documentElement.classList.remove('is-page-transitioning');
+    });
 
     setTimeout(() => {
       triggerReveals();
@@ -147,6 +172,12 @@ export function initPopState() {
   window.addEventListener('popstate', (e) => {
     const id = e.state?.pageId || slugToPageId(location.pathname);
     showPage(id, false);
+  });
+
+  // On full page load (refresh, direct URL hit), force scroll to top
+  // so the user always lands at the hero — never mid-page.
+  window.addEventListener('pageshow', () => {
+    scrollToTop();
   });
 }
 
