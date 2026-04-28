@@ -55,7 +55,7 @@
 @keyframes lgPulse { 50% { opacity: 0.35; } }
 
 /* ── Section primitives ── */
-.lg-wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.lg-wrap { max-width: 1680px; margin: 0 auto; padding: 0 80px; }
 @media (max-width: 768px) { .lg-wrap { padding: 0 20px; } }
 
 .lg-section { padding: 100px 0; position: relative; }
@@ -239,18 +239,18 @@
 .lg-logos__row span { opacity: 0.55; transition: opacity 0.3s, color 0.3s; }
 .lg-logos__row span:hover { opacity: 1; color: var(--accent); }
 
-/* Real-logo SVGs (already white in source — fills converted at build time).
-   Inner details show through as transparent "holes" against the dark background. */
+/* Real-logo SVGs in full brand color */
 .lg-logos__row img {
   height: 30px;
   width: auto;
   object-fit: contain;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+  opacity: 0.85;
+  transition: opacity 0.3s, transform 0.3s;
   flex-shrink: 0;
 }
 .lg-logos__row img:hover {
   opacity: 1;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -262,9 +262,9 @@
 .lg-stathero { padding: 120px 0; background: var(--ink); position: relative; overflow: hidden; isolation: isolate; }
 .lg-stathero--dark { background: linear-gradient(180deg, var(--ink) 0%, var(--ash) 100%); }
 .lg-stathero__inner {
-  max-width: 1280px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 80px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 80px;
@@ -287,8 +287,15 @@
   letter-spacing: -0.04em;
   color: var(--forge);
   margin: 0;
+  white-space: nowrap;
 }
-.lg-stathero__big em { font-style: italic; color: var(--accent); font-weight: 900; }
+.lg-stathero__big em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 900;
+  white-space: nowrap;
+  display: inline-block;
+}
 .lg-stathero__claim {
   font-family: var(--ff-display);
   font-size: clamp(28px, 3.5vw, 44px);
@@ -502,34 +509,41 @@
   cursor: pointer;
   background: var(--coal);
 }
+/* Showcase video runs unfiltered — let the actual page design read clearly.
+   A very soft right-side gradient keeps the text legible without darkening
+   the design. */
 .lg-showcase__media .video-bg__scrim {
   background: linear-gradient(
-    to bottom,
-    rgba(10, 10, 10, 0.55) 0%,
-    rgba(10, 10, 10, 0.7) 50%,
-    rgba(10, 10, 10, 0.88) 100%
+    to left,
+    rgba(10, 10, 10, 0.65) 0%,
+    rgba(10, 10, 10, 0.35) 35%,
+    transparent 60%
   );
 }
 .lg-showcase__media .video-bg__vignette {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.15) 30%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
-}
-.lg-showcase__media .video-bg video,
-.lg-showcase__media .video-bg__poster {
-  filter: brightness(0.75);
+  background: transparent;
 }
 .lg-showcase__overlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   z-index: 5;
   pointer-events: none;
 }
-.lg-showcase__inner { max-width: 1280px; margin: 0 auto; padding: 0 40px 64px; width: 100%; }
+.lg-showcase__inner {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 80px 64px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.lg-showcase__inner > div {
+  max-width: 560px;
+  text-align: right;
+}
 .lg-showcase__chapter {
   font-family: var(--ff-mono);
   font-size: 10px;
@@ -550,8 +564,9 @@
   max-width: 800px;
 }
 .lg-showcase__title em { font-style: italic; color: var(--accent); }
-.lg-showcase__sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 24px; max-width: 580px; }
-.lg-showcase__cta-row { display: flex; pointer-events: auto; }
+.lg-showcase__sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 24px 0; max-width: 580px; }
+.lg-showcase__inner > div .lg-showcase__sub { margin-left: auto; }
+.lg-showcase__cta-row { display: flex; pointer-events: auto; justify-content: flex-end; }
 
 .lg-showcase__strip {
   display: flex;
@@ -572,7 +587,21 @@
 
 @media (max-width: 768px) {
   .lg-showcase__media { height: 460px; }
-  .lg-showcase__inner { padding: 0 20px 32px; }
+  .lg-showcase__inner {
+    padding: 0 20px 32px;
+    justify-content: center;
+  }
+  .lg-showcase__inner > div { text-align: center; }
+  .lg-showcase__inner > div .lg-showcase__sub { margin: 0 auto 24px; }
+  .lg-showcase__cta-row { justify-content: center; }
+  .lg-showcase__media .video-bg__scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.25) 0%,
+      rgba(10, 10, 10, 0.55) 60%,
+      rgba(10, 10, 10, 0.85) 100%
+    );
+  }
 }
 
 /* Play overlay reused on showcase media */
@@ -697,21 +726,20 @@
 
 /* Tiles with embedded video — let the case-study screen recordings
    display fully (no cropping) inside the 4/3 frame. */
+/* Work tile videos render unfiltered so the actual landing-page designs
+   are easy to read inside the small frame. */
 .lg-work__visual[data-video] .video-bg video {
   object-fit: contain;
   background: var(--coal);
-  filter: brightness(0.85);
-  transition: filter 0.3s;
 }
 .lg-work__visual[data-video] .video-bg__poster {
   background-size: contain;
   background-repeat: no-repeat;
   background-color: var(--coal);
-  filter: brightness(0.85);
 }
-.lg-work__tile:hover .lg-work__visual[data-video] .video-bg video,
-.lg-work__tile:hover .lg-work__visual[data-video] .video-bg__poster {
-  filter: brightness(1);
+.lg-work__visual[data-video] .video-bg__scrim,
+.lg-work__visual[data-video] .video-bg__vignette {
+  background: transparent;
 }
 .lg-work__body { padding: 24px 26px 28px; }
 .lg-work__meta {
@@ -861,29 +889,11 @@
 .lg-final__trust svg { color: var(--accent); }
 
 /* ══════════════════════════════════
-   NAV LINK BADGE (NEW indicator)
+   NAV BADGE (NEW indicator inside submenu items)
+   Note: top-level .nav-link--badge is gone — items moved into dropdowns.
+   The .nav-badge styling for sublinks lives in layout.css.
+   This block keeps the old name as a no-op for compatibility.
    ══════════════════════════════════ */
-.nav-link--badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav-badge {
-  font-family: var(--ff-mono);
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  background: var(--accent);
-  color: #000;
-  padding: 2px 6px;
-  border-radius: 2px;
-  font-weight: 600;
-  position: relative;
-  animation: navBadgePulse 2.4s ease-in-out infinite;
-}
-@keyframes navBadgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
-  50% { box-shadow: 0 0 0 4px rgba(200, 240, 38, 0.0); }
-}
 
 /* ══════════════════════════════════
    MONUMENT SVG (generalized — used by AQOMI outro & lead-gen final)

@@ -1,15 +1,37 @@
 <nav>
   <a href="#" class="nav-logo" onclick="showPage('home')">AQOMI <span class="nav-logo-accent">Studios</span></a>
   <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+
   <div class="nav-links">
-    <a href="#" class="nav-link" onclick="showPage('why')">The Why</a>
     <a href="#" class="nav-link" onclick="showPage('work')">Work</a>
     <a href="#" class="nav-link" onclick="showPage('industries')">Industries</a>
-    <a href="#" class="nav-link" onclick="showPage('services')">Services</a>
-    <a href="#" class="nav-link nav-link--badge" onclick="showPage('ai-leadgen')">AI Lead Gen <span class="nav-badge">NEW</span></a>
-    <a href="#" class="nav-link nav-link--badge" onclick="showPage('landing-pages')">Landing Pages <span class="nav-badge">NEW</span></a>
-    <a href="#" class="nav-link" onclick="showPage('studio')">Studio</a>
-    <a href="#" class="nav-link" onclick="showPage('careers')">Careers</a>
-    <a href="#" class="nav-link nav-cta" onclick="showPage('book')">Book a Call</a>
+
+    <!-- Services dropdown -->
+    <div class="nav-dropdown">
+      <a href="#" class="nav-link nav-link--has-submenu" onclick="showPage('services')" aria-haspopup="true" aria-expanded="false">
+        Services <span class="nav-caret" aria-hidden="true">&#9662;</span>
+      </a>
+      <div class="nav-submenu" role="menu">
+        <a href="#" class="nav-sublink" role="menuitem" onclick="showPage('ai-leadgen')">
+          AI Lead Gen <span class="nav-badge">NEW</span>
+        </a>
+        <a href="#" class="nav-sublink" role="menuitem" onclick="showPage('landing-pages')">
+          Landing Pages <span class="nav-badge">NEW</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Studio dropdown -->
+    <div class="nav-dropdown">
+      <a href="#" class="nav-link nav-link--has-submenu" onclick="showPage('studio')" aria-haspopup="true" aria-expanded="false">
+        Studio <span class="nav-caret" aria-hidden="true">&#9662;</span>
+      </a>
+      <div class="nav-submenu" role="menu">
+        <a href="#" class="nav-sublink" role="menuitem" onclick="showPage('why')">The Why</a>
+        <a href="#" class="nav-sublink" role="menuitem" onclick="showPage('careers')">Careers</a>
+      </div>
+    </div>
   </div>
+
+  <a href="#" class="nav-cta" onclick="showPage('book')">Book a Call</a>
 </nav>

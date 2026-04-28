@@ -88,8 +88,7 @@
   .video-bg video { display: none; }
 }
 
-/* Black & white filter — applied to hero videos only.
-   Posters get the same treatment so the transition stays consistent. */
+/* Hero videos: full black & white with a touch of contrast */
 .hero .video-bg video,
 .hero .video-bg__poster,
 .lg-hero .video-bg video,
