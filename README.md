@@ -45,7 +45,7 @@ Este proyecto es una Aplicación de Una Sola Página (Single Page Application - 
 ├── package.json                # Dependencias del proyecto
 └── vite.config.js              # Configuración de Vite y Compresión
 ```
-
+ 
 ## 📸 Galería del Proyecto
 
 | Inicio (Home) | El Porqué (The Why) |
