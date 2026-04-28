@@ -45,6 +45,16 @@ export const MANIFEST = {
     webm:   '/videos/case-xyvon.webm',
     poster: '/videos/case-xyvon-poster.jpg',
   },
+  caseGraff: {
+    mp4:    '/videos/case-graff.mp4',
+    webm:   '/videos/case-graff.webm',
+    poster: '/videos/case-graff-poster.jpg',
+  },
+  caseSabean: {
+    mp4:    '/videos/case-sabean.mp4',
+    webm:   '/videos/case-sabean.webm',
+    poster: '/videos/case-sabean-poster.jpg',
+  },
 
   // AI Lead Generation page
   heroAi: {
@@ -170,8 +180,33 @@ function build(host, key) {
   return { wrap, video };
 }
 
+// True only on devices with a precise pointer that supports real hover.
+// Touch screens fall through to the viewport-trigger fallback so videos still play.
+const SUPPORTS_HOVER = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
 function watch(host, video) {
   if (!video) return;
+
+  const trigger = host.dataset.videoTrigger || 'viewport';
+
+  // Hover-triggered playback (e.g. case study tiles in lead-gen pages).
+  // Saves bandwidth / CPU — videos only play when the user hovers each tile.
+  if (trigger === 'hover' && SUPPORTS_HOVER) {
+    host.addEventListener('mouseenter', () => {
+      video.play().catch(() => {});
+    });
+    host.addEventListener('mouseleave', () => {
+      video.pause();
+      // Reset to start so the next hover begins from frame 0
+      try { video.currentTime = 0; } catch (_) {}
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+    });
+    return;
+  }
+
+  // Default: viewport-triggered autoplay (heroes, video bands, mobile/touch fallback)
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (e.isIntersecting) {
@@ -183,7 +218,6 @@ function watch(host, video) {
   }, { threshold: 0.05 });
   io.observe(host);
 
-  // Also pause when tab hidden
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) video.pause();
     else if (host.getBoundingClientRect().top < window.innerHeight) {

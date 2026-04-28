@@ -52,6 +52,50 @@ function ensureObserver() {
   return _io;
 }
 
+function finalText(el) {
+  const t = parseFloat(el.dataset.target || '0');
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  return `${prefix}${format(t, decimals)}${suffix}`;
+}
+
+/**
+ * Reserve the width of the FINAL value before the count-up starts so the
+ * surrounding layout (grid columns, neighboring text) doesn't shift as
+ * digits get added.
+ *
+ * Two strategies:
+ *   - If the .stat-count span has siblings (e.g. <em>%</em> next to it),
+ *     reserve min-width on the PARENT — otherwise the span goes inline-block
+ *     and pushes the sibling onto a new line.
+ *   - Otherwise the span itself holds the reserve.
+ */
+function reserveWidth(el) {
+  if (el.dataset.statReserved === '1') return;
+  const initialText = el.textContent;
+  el.style.fontVariantNumeric = 'tabular-nums';
+  el.textContent = finalText(el);
+
+  const parent = el.parentElement;
+  const hasSiblings = parent && parent.children.length > 1;
+
+  if (hasSiblings) {
+    // Reserve on parent — keeps siblings inline alongside the span
+    const parentW = parent.getBoundingClientRect().width;
+    parent.style.minWidth = parentW + 'px';
+  } else {
+    // Span owns the reserve directly
+    el.style.display = 'inline-block';
+    el.style.textAlign = 'left';
+    const w = el.getBoundingClientRect().width;
+    el.style.minWidth = w + 'px';
+  }
+
+  el.textContent = initialText;
+  el.dataset.statReserved = '1';
+}
+
 export function initStatCounter() {
   // Idempotent — safe to re-run after lazy pages load or on page activation
   const targets = document.querySelectorAll('.stat-count:not([data-stat-bound])');
@@ -61,8 +105,7 @@ export function initStatCounter() {
   if (reduced) {
     targets.forEach((el) => {
       el.dataset.statBound = '1';
-      const t = el.dataset.target || '0';
-      el.textContent = `${el.dataset.prefix || ''}${parseFloat(t).toLocaleString('en-US')}${el.dataset.suffix || ''}`;
+      el.textContent = finalText(el);
     });
     return;
   }
@@ -70,6 +113,7 @@ export function initStatCounter() {
   const io = ensureObserver();
   targets.forEach((el) => {
     el.dataset.statBound = '1';
+    reserveWidth(el);
     io.observe(el);
   });
 }

@@ -35,7 +35,6 @@ import { initRoadmap } from './roadmap.js';
 import { initVoiceAssistant } from './voiceAssistant.js';
 import { initVideoBackgrounds } from './videoBackground.js';
 import { initAqomiOutro } from './aqomiOutro.js';
-import { initCaseModal } from './caseModal.js';
 import { initStatCounter } from './statCounter.js';
 
 // ── Expose showPage globally (used by onclick handlers in HTML) ──
@@ -130,9 +129,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // AQOMI outro draw-on + glow
   initAqomiOutro();
 
-  // Case study video modal
-  initCaseModal();
-
   // Stat counter (count-up on viewport)
   initStatCounter();
 
@@ -156,7 +152,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   function rebindLazyModules() {
     initVideoBackgrounds();
     initAqomiOutro();
-    initCaseModal();
     initStatCounter();
   }
   setTimeout(rebindLazyModules, 2500);
