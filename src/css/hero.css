@@ -147,24 +147,161 @@
   flex-direction: column;
 }
 
-/* TOP block — right aligned (eyebrow, headline, divider) */
-.hero-eyebrow,
-.hero-h1,
-.hero-divider {
-  align-self: flex-end;
-  text-align: right;
-  margin-left: auto;
-  margin-right: 0;
+/* ── Split grid: title left · glass card right ── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: center;
+  width: 100%;
 }
 
-/* BOTTOM block — left aligned (subtitle, actions) */
-.hero-sub,
-.hero-actions {
-  align-self: flex-start;
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
-  margin-left: 0;
-  margin-right: auto;
-  justify-content: flex-start;
+}
+
+/* ── Glass card with offset ghost layer ── */
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-card {
+  position: relative;
+  max-width: 440px;
+  padding: 36px 34px;
+  border-radius: 20px;
+  background: rgba(15, 15, 15, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 1s 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Ghost layer offset behind the card */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transform: translate(18px, 18px);
+  z-index: -1;
+  filter: blur(0.4px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card__kicker {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.hero-card__copy {
+  font-family: var(--ff-display);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--forge);
+  margin: 0 0 24px;
+  letter-spacing: -0.005em;
+}
+
+.hero-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── Numbered category list (bottom of hero) ── */
+.hero-cats {
+  list-style: none;
+  margin: 72px 0 0;
+  padding: 36px 0 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  width: 100%;
+  opacity: 0;
+  animation: fadeUp 1s 1.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.hero-cat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-cat__num {
+  font-family: var(--ff-display);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.hero-cat__label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── Credentials tag (centered below categories) ── */
+.hero-tag {
+  width: 100%;
+  margin: 40px 0 0;
+  text-align: center;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--dim);
+  opacity: 0;
+  animation: fadeIn 1s 1.6s ease forwards;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-right { justify-content: flex-start; }
+  .hero-card { max-width: 100%; }
+  .hero-card::before { transform: translate(10px, 10px); }
+  .hero-cats { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .hero-tag { font-size: 9px; letter-spacing: 0.22em; }
+}
+
+@media (max-width: 480px) {
+  .hero-cats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .hero-cat__num { font-size: 24px; }
 }
 
 .hero-eyebrow {
@@ -182,9 +319,9 @@
 .hero-h1 {
   font-family: var(--ff-display);
   font-weight: 900;
-  font-size: clamp(64px, 9.5vw, 140px);
-  line-height: 0.90;
-  letter-spacing: -0.01em;
+  font-size: clamp(48px, 7vw, 100px);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
   margin-bottom: 0;
   color: var(--forge);
 }

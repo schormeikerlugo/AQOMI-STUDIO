@@ -1,25 +1,61 @@
 <div id="page-home" class="page active">
 
   <!-- HERO -->
-  <section class="hero" data-video="hero">
+  <section class="hero hero--split" data-video="hero">
     <div class="embers" id="embers"></div>
-    <div class="hero-mono">AS</div>
+    <div class="bg-aurora"></div>
 
     <div class="hero-content">
-      <span class="hero-eyebrow">Elite Branding & Design Agency · Clutch #1 Canada · #8 North America</span>
-      <h1 class="hero-h1" style="line-height:0.82;">
-        <span class="line"><span class="line-inner">Your New</span></span>
-        <span class="line italic"><span class="line-inner">Creative</span></span>
-        <span class="line last-line"><span class="line-inner">Partner</span></span>
-      </h1>
-      <div class="hero-divider"></div>
-      <p class="hero-sub">AQOMI Studios is an elite branding and design agency trusted by global corporations, founders,
-        and public figures.<br>We craft strategic brand identities that define categories, command attention, and drive
-        measurable results.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn-forge" onclick="showPage('book')">Book a Call</a>
-        <a href="#" class="btn-ghost" onclick="showPage('work')">View Our Work</a>
+      <div class="hero-grid">
+        <!-- LEFT — Title block -->
+        <div class="hero-left">
+          <span class="hero-eyebrow">For Ambitious Brands</span>
+          <h1 class="hero-h1">
+            <span class="line"><span class="line-inner">For</span></span>
+            <span class="line"><span class="line-inner">Ambitious</span></span>
+            <span class="line italic last-line"><span class="line-inner">Brands.</span></span>
+          </h1>
+          <div class="hero-actions">
+            <a href="#" class="btn-forge" onclick="showPage('book')">Book a Call</a>
+            <a href="#" class="btn-ghost" onclick="showPage('work')">View Our Work</a>
+          </div>
+        </div>
+
+        <!-- RIGHT — Glass card (offset double layer) -->
+        <div class="hero-right">
+          <div class="hero-card">
+            <span class="hero-card__kicker">The standard</span>
+            <p class="hero-card__copy">Branding for companies that demand attention and measurable impact.</p>
+            <div class="hero-card__meta">
+              <span>Clutch · #1 Canada</span>
+              <span>3,500+ brands · 40 countries</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- BOTTOM — 4 numbered categories -->
+      <ul class="hero-cats" aria-label="Studio disciplines">
+        <li class="hero-cat">
+          <span class="hero-cat__num">#01</span>
+          <span class="hero-cat__label">Brand Strategy</span>
+        </li>
+        <li class="hero-cat">
+          <span class="hero-cat__num">#02</span>
+          <span class="hero-cat__label">Identity Design</span>
+        </li>
+        <li class="hero-cat">
+          <span class="hero-cat__num">#03</span>
+          <span class="hero-cat__label">Campaigns</span>
+        </li>
+        <li class="hero-cat">
+          <span class="hero-cat__num">#04</span>
+          <span class="hero-cat__label">Creative Direction</span>
+        </li>
+      </ul>
+
+      <!-- Credentials tag (centered, bottom of hero) -->
+      <div class="hero-tag">Elite Branding &amp; Design Agency &middot; Clutch #1 Canada &middot; #8 North America</div>
     </div>
 
     <div class="hero-bar">
