@@ -229,21 +229,15 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--rule);
-  background: var(--rule);    /* gap color showing through */
-  gap: 1px;
+  /* No borders, no dividers — clean grid that just preserves order. */
+  gap: 24px 32px;
 }
 .lg-logos__cell {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ash);
-  padding: 28px 36px;
-  min-height: 96px;
-  transition: background 0.3s;
-}
-.lg-logos__cell:hover {
-  background: var(--coal);
+  padding: 12px 16px;
+  min-height: 64px;
 }
 .lg-logos__cell img {
   max-height: 32px;
@@ -262,8 +256,8 @@
   .lg-logos__grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 700px) {
-  .lg-logos__grid { grid-template-columns: repeat(2, 1fr); }
-  .lg-logos__cell { padding: 22px 20px; min-height: 80px; }
+  .lg-logos__grid { grid-template-columns: repeat(2, 1fr); gap: 18px 20px; }
+  .lg-logos__cell { padding: 8px 12px; min-height: 52px; }
   .lg-logos__cell img { max-height: 26px; }
 }
 

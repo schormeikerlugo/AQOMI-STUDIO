@@ -12,7 +12,9 @@
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
-  padding: 120px 80px 80px;
+  /* Match the nav padding (48px) so the hero content lines up with
+     the logo on the left and the CTA on the right. */
+  padding: 120px 48px 80px;
   background: var(--ink);
   color: var(--forge);
   isolation: isolate;
@@ -141,8 +143,9 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  /* No max-width — content stretches edge-to-edge inside the hero
+     padding so it aligns with the nav's logo + CTA. */
+  margin: 0;
   display: flex;
   flex-direction: column;
 }
