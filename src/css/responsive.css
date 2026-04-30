@@ -2,31 +2,8 @@
    RESPONSIVE — Mobile Optimization
    ══════════════════════════════════ */
 
-/* ── Industries Logo Track (all viewports) ── */
-.ind-logo-track {
-  display: flex;
-  align-items: center;
-  gap: 56px;
-  animation: indLogoScroll 30s linear infinite;
-  width: max-content;
-}
-.ind-logo-item {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.45;
-  filter: grayscale(100%) brightness(0) invert(1);
-  transition: opacity 0.3s, filter 0.3s;
-  flex-shrink: 0;
-}
-.ind-logo-item:hover {
-  opacity: 0.9;
-  filter: grayscale(0%) brightness(1) invert(0);
-}
-@keyframes indLogoScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+/* Industries logos: replaced by the structured .lg-logos__grid wall
+   defined in lead-gen.css. Old marquee CSS removed. */
 
 /* ── Hamburger Menu ── */
 .nav-toggle {
@@ -830,9 +807,7 @@
   [style*="max-width:500px"] {
     max-width: 100% !important;
   }
-  /* Industries logo track mobile */
-  .ind-logo-track { gap: 40px; }
-  .ind-logo-item { height: 28px !important; }
+  /* Industries logo grid: handled by .lg-logos__grid responsive rules */
 
   /* ── GENERAL CENTERING for stacked content ── */
   [style*="text-align:left"][style*="padding:80px"],

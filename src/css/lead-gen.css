@@ -222,38 +222,49 @@
   color: var(--dim);
   margin-bottom: 22px;
 }
-.lg-logos__row {
+/* Logo wall — structured grid with hairline dividers.
+   Each cell same dimensions; logos centered with consistent visual weight. */
+.lg-logos__grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule);
+  background: var(--rule);    /* gap color showing through */
+  gap: 1px;
+}
+.lg-logos__cell {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 48px;
-  font-family: var(--ff-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dim);
+  justify-content: center;
+  background: var(--ash);
+  padding: 28px 36px;
+  min-height: 96px;
+  transition: background 0.3s;
 }
-.lg-logos__row span { opacity: 0.55; transition: opacity 0.3s, color 0.3s; }
-.lg-logos__row span:hover { opacity: 1; color: var(--accent); }
-
-/* Real-logo SVGs in full brand color */
-.lg-logos__row img {
-  height: 30px;
+.lg-logos__cell:hover {
+  background: var(--coal);
+}
+.lg-logos__cell img {
+  max-height: 32px;
+  max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
-  opacity: 0.85;
-  transition: opacity 0.3s, transform 0.3s;
-  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.3s;
 }
-.lg-logos__row img:hover {
+.lg-logos__cell:hover img {
   opacity: 1;
-  transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-  .lg-logos__row { gap: 28px; }
-  .lg-logos__row img { height: 22px; }
+@media (max-width: 1024px) {
+  .lg-logos__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .lg-logos__grid { grid-template-columns: repeat(2, 1fr); }
+  .lg-logos__cell { padding: 22px 20px; min-height: 80px; }
+  .lg-logos__cell img { max-height: 26px; }
 }
 
 /* ── STAT HERO ── */
