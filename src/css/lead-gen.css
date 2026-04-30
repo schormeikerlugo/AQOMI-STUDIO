@@ -8,8 +8,6 @@
 #page-landing-pages {
   background: var(--ink);
   color: var(--forge);
-  /* Reserve space for the fixed announce bar that sits below the fixed nav */
-  padding-top: 40px;
 }
 
 /* ── Announcement bar — pinned below nav, hides/shows in sync with nav ── */

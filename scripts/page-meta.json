@@ -51,6 +51,21 @@
   },
   "landing-pages": {
     "slug": "landing-pages",
+    "title": "Premium Company Landing Pages | AQOMI Studios",
+    "description": "Hand-built landing pages by Canada's #1 design studio. Cinematic video, premium imagery, and conversion architecture — live in 7 days."
+  },
+  "branding": {
+    "slug": "branding",
+    "title": "Branding | AQOMI Studios — Brand Identity Systems",
+    "description": "Brand identity systems built to outlast the brief. Strategy, identity, voice, and launch assets — engineered by Canada's #1 design studio. From $10,000."
+  },
+  "campaigns": {
+    "slug": "campaigns",
+    "title": "Campaigns | AQOMI Studios — Traditional, Digital, Print, Social, Advertising",
+    "description": "Multi-channel campaigns that move culture. Traditional, digital, print, social, and advertising — concepted, produced, and launched by AQOMI Studios."
+  },
+  "landing-pages": {
+    "slug": "landing-pages",
     "title": "Premium Landing Pages | AQOMI Studios — Built in 7 Days",
     "description": "Stop losing customers to a slow, generic website. Get a conversion-focused landing page built by Canada's #1 design studio. Live in 7 days — or you don't pay."
   },

@@ -32,6 +32,8 @@ const ROUTE_MAP = {
   start: 'start',
   'ai-leadgen': 'ai-lead-generation',
   'landing-pages': 'landing-pages',
+  branding: 'branding',
+  campaigns: 'campaigns',
 };
 
 // Project pages: proj-shoe-guru -> work/shoe-guru
@@ -209,10 +211,6 @@ function applyNavScroll() {
   const nav = document.querySelector('nav');
   if (!nav) { scrollTicking = false; return; }
 
-  // Only the announce bar inside the currently-active page should react to scroll.
-  // Without this, querySelector('.lg-announce') grabs the first match in the DOM
-  // (which may belong to a hidden page), leaving the visible one out of sync.
-  const announce = document.querySelector('.page.active .lg-announce');
   const y = Math.max(0, window.scrollY);
   const delta = y - lastScrollY;
 
@@ -223,11 +221,6 @@ function applyNavScroll() {
     nav.classList.add('is-hidden');
   } else if (delta < -SCROLL_DELTA || y <= SCROLL_TOP_GUARD) {
     nav.classList.remove('is-hidden');
-  }
-
-  // Announce bar follows the nav
-  if (announce) {
-    announce.classList.toggle('is-hidden', nav.classList.contains('is-hidden'));
   }
 
   lastScrollY = y;
@@ -252,9 +245,6 @@ export function initNavScroll() {
   onPageActivate(() => {
     const nav = document.querySelector('nav');
     if (nav) nav.classList.remove('is-hidden');
-    // Reset hidden state on ALL announces so a previously-hidden page doesn't
-    // come back hidden when the user returns to it.
-    document.querySelectorAll('.lg-announce').forEach((a) => a.classList.remove('is-hidden'));
     lastScrollY = window.scrollY;
     applyNavScroll();
   });
